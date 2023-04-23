@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import { lazy, Suspense } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
+import { AuthProvider } from './context/AuthProvider';
+import Home from './pages/home/Home';
+import Auth from './layouts/auth/Auth';
+import Login, {action as actionLogin} from './pages/authentication/login/Login';
+import Register, {action as actionRegister} from './pages/authentication/register/Register';
+
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />
+    },
+    {
+      path: '/authentication',
+      element: <Auth />,
+      action:actionLogin,
+      children: [
+        { index:true, element: <Login /> },
+        { path:'register', element: <Register />, action:actionRegister }
+      ]
+    },
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 

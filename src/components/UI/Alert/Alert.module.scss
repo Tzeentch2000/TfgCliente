@@ -1,0 +1,13 @@
+@import '../../../assets/var/var.scss';
+
+.alert{
+    max-width: 100%;
+    padding: .5rem;
+    font-weight: 600;
+    color: $secondary-color;
+    text-align: center;
+}
+
+.error{
+    background-color: #940000;
+}
