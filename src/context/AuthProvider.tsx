@@ -1,6 +1,6 @@
 import { useState,useEffect,createContext, useReducer } from "react";
 import { tokenReducer } from "./reducer/TokenReducer";
-import { IToken } from "../interfaces/Interfaces";
+import { IToken, IUser } from "../interfaces/Interfaces";
 import { getCookie } from "../assets/functions/cookie";
 import { validateToken } from "../assets/functions/validation";
 
@@ -12,8 +12,8 @@ type AuthContextType = {
     token: IToken
     setId: (id:string) => void,
     setIsAdmin: (isAdmin:boolean) => void,
-    a:string,
-    setA: (a:string) => void
+    user:IUser,
+    setUser: (user:IUser) => void
 }
 //For object
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -27,7 +27,7 @@ const INITIAL_TOKEN_STATE: IToken = {
 const AuthProvider = ({children}: props) => {
 
    const [token,dispatchToken] = useReducer(tokenReducer,INITIAL_TOKEN_STATE)
-   const [a,setA] = useState('F')
+   const [user,setUser] = useState({} as IUser)
 
    const setId = (id:string) => {
         dispatchToken({ type: 'changeId', playload: id})
@@ -42,8 +42,8 @@ const AuthProvider = ({children}: props) => {
                 token,
                 setId,
                 setIsAdmin,
-                a,
-                setA
+                user,
+                setUser
             }}
         >
             {children}

@@ -18,12 +18,18 @@
             list-style: none;
 
             a{
+                color: $secondary-color;
+                text-decoration: none;
                 transition-property: all;
                 transition-duration: .5s;
                 &:hover{
                     cursor: pointer;
                     color: $active;
                 }
+            }
+
+            .active{
+                color:$active
             }
         }
 
@@ -33,10 +39,6 @@
            li{
             padding: 1rem;
            }
-        }
-
-        .active{
-            color: $active;
         }
     }
 }
