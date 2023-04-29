@@ -9,9 +9,9 @@ interface props {
     children: React.ReactNode
 }
 type AuthContextType = {
-    token: IToken
-    setId: (id:string) => void,
-    setIsAdmin: (isAdmin:boolean) => void,
+    //token: IToken
+    //setId: (id:string) => Promise<void>,
+    //setIsAdmin: (isAdmin:boolean) => Promise<void>,
     user:IUser,
     setUser: (user:IUser) => void
 }
@@ -26,22 +26,19 @@ const INITIAL_TOKEN_STATE: IToken = {
 
 const AuthProvider = ({children}: props) => {
 
-   const [token,dispatchToken] = useReducer(tokenReducer,INITIAL_TOKEN_STATE)
+   //const [token,dispatchToken] = useReducer(tokenReducer,INITIAL_TOKEN_STATE)
    const [user,setUser] = useState({} as IUser)
 
-   const setId = (id:string) => {
-        dispatchToken({ type: 'changeId', playload: id})
+   /*const setId = async (id:string) => {
+       await dispatchToken({ type: 'changeId', playload: id})
    }
-   const setIsAdmin = (isAdmin:boolean) => {
-        dispatchToken({ type: 'changeIsAdmin', playload: isAdmin})
-   }
+   const setIsAdmin = async (isAdmin:boolean) => {
+       await dispatchToken({ type: 'changeIsAdmin', playload: isAdmin})
+   }*/
 
     return(
         <AuthContext.Provider
             value={{
-                token,
-                setId,
-                setIsAdmin,
                 user,
                 setUser
             }}

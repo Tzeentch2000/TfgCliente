@@ -4,7 +4,6 @@ export function setCookie<T>(cName: string, cValue : T, expDays: number) {
     const expires = "expires=" + date.toUTCString();
     document.cookie = cName + "=" + JSON.stringify(cValue) + "; " + expires + "; path=/";
 }
-
 export function getCookie(cName: string): any {
     var result = document.cookie.match(new RegExp(cName + '=([^;]+)'));
     result && (result = JSON.parse(result[1]));
@@ -13,3 +12,4 @@ export function getCookie(cName: string): any {
 export function deleteCookie(cName: string){
     document.cookie = cName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+

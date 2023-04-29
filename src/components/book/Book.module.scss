@@ -1,0 +1,68 @@
+@import '../../assets/var/var.scss';
+
+.container{
+    margin: auto;
+    border-radius: 10px;
+    width: 14.6rem;
+    background-color: $primary-color;
+    color: $grey;
+    text-align: center;
+    border: 8px solid $primary-color;
+    filter: brightness(.9);
+    transition-property: all;
+    transition-duration: .5s;
+    
+    &:hover{
+        filter: brightness(1.1);
+        cursor: pointer;
+    }
+    
+    .image{
+        height: 14rem;
+        background-image: url('../../assets/images/book.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .textContent{
+        width: 90%;
+        padding: 0 1rem;
+        margin: auto;
+
+        h3{
+            color: $active;
+            margin-bottom: 0;
+        }
+        p{
+            margin-top: .7rem;
+            text-align: left;
+            font-size: .9rem;
+            display: -webkit-box; /*Después de 2 líneas me lo ocultas*/
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden; 
+        }
+    }
+
+    .btn{
+        all: unset;
+        margin: 0 0 .5rem 0;
+        width: 80%;
+        border: 1px solid $active;
+        padding: .2rem .5rem;
+        border-radius: 10px;
+        transition-property: all;
+        transition-duration: .5s;
+
+        &:hover {
+            color: $primary-color;
+            background-color: $active;
+            cursor: pointer;
+        }
+    }
+
+}

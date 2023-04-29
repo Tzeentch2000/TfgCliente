@@ -24,7 +24,7 @@ export interface IBook{
     author:string,
     price:Number,
     image:string,
-    categories:ICategory,
+    categories:ICategory[],
     state:IState,
     isActive:boolean
 }
@@ -47,4 +47,10 @@ export interface IUser{
     phone:Number,
     isAdmin:boolean,
     orders:IOrders
+}
+
+export interface IHomeLoaderData{
+    books:IBook[],
+    categories:ICategory[],
+    states:IState[]
 }

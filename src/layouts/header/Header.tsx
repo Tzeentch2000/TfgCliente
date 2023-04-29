@@ -10,28 +10,20 @@ import { IUser } from '../../interfaces/Interfaces'
 
 const Header = () => {
   const navigate = useNavigate()
-  const {token,setId,setIsAdmin,user,setUser} = useAuth();
+  const {user,setUser} = useAuth();
 
     useEffect(() => {
       if(getCookie('token') === null){
           navigate('/authentication')
           return
       }
-      const _token = getCookie('token')
-      setId(validateToken(_token).id)
-      console.log(validateToken(_token).userRole)
-      if(validateToken(_token).userRole === 'True'){
-          setIsAdmin(true)
-      } else {
-        setIsAdmin(false)
-      }
 
-      const takeUser = async () =>{
-        console.log('Entra')
-        const _user:IUser = await chargeUser(token.id,_token)
+      const takeData = async () =>{
+        const _token = await getCookie('token')
+        const _user:IUser = await chargeUser(validateToken(_token).id,_token)
         setUser(_user)
       }
-      takeUser()
+      takeData()
     },[])
 
     const handleClickCloseSession = () => {

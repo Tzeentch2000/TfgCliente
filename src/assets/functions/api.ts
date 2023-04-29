@@ -1,10 +1,20 @@
 import axios from "axios"
-const CREATEUSER = 'https://localhost:7224/User/Create'
-const LOGIN = 'https://localhost:7224/Auth'
-const GETUSER = 'https://localhost:7224/User/'
+const SERVER = 'https://localhost:7224/'
+const CREATEUSER = `${SERVER}User/Create`
+const LOGIN = `${SERVER}Auth`
+const GETUSER = `${SERVER}User/`
+const GETBOOKS = `${SERVER}Book`
+const GETCATEGORIES = `${SERVER}Category`
+const GETSTATES = `${SERVER}State`
 
-//Authentication
-//type Object = 
+const config = (token:string) => {
+  return {
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    }
+  }
+}
 
 export async function register(user: any){
     return axios.post(CREATEUSER,user)
@@ -25,13 +35,43 @@ export async function login(user: any){
 }
 
 export async function chargeUser(id:string,token:string){
-  const config = {
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-    }
+  return axios.get(`${GETUSER}${id}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
 }
-  return axios.get(`${GETUSER}${id}`,config)
+
+export async function getBooks(){
+  return axios.get(`${GETBOOKS}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getCategories(){
+  return axios.get(`${GETCATEGORIES}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getStates(){
+  return axios.get(`${GETSTATES}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getBookById(id:Number){
+  return axios.get(`${GETBOOKS}/${id}`)
   .then(response => response.data)
   .catch(function (error) {
       console.log(error);

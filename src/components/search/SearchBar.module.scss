@@ -1,0 +1,16 @@
+@import '../../assets/var/var.scss';
+
+.search{
+    border-radius: 5px;
+    border: .15rem solid $primary-color;
+    font-size: 1.1rem;
+    padding-left: .8rem;
+    flex: .7;
+    margin: 0 1.5rem;
+
+    @media screen and (max-width: 790px) {
+        margin: .3rem 0;
+        flex: none;
+        height: 2rem;
+     }
+}

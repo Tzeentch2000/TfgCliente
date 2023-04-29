@@ -1,0 +1,35 @@
+.container{
+    width: 75%;
+    margin: auto;
+    max-width: 80rem;
+
+    @media screen and (max-width: 790px) {
+       width: 100%;
+     }
+    .title{
+        margin-top: 2.5rem;
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: bolder;
+    }
+
+    .filter{
+        display: flex;
+        justify-content: center;
+        max-width: 987px;
+        margin: auto;
+
+        @media screen and (max-width: 790px) {
+            flex-direction: column;
+            width: 90%;
+        }
+
+        .select{
+            display: flex;
+            justify-content: space-around;
+            @media screen and (max-width: 790px) {
+               
+             }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
 import { AuthProvider } from './context/AuthProvider';
-import Home from './pages/home/Home';
+import Home, {loader as homeLoader} from './pages/home/Home';
 import Auth from './layouts/auth/Auth';
 import Login, {action as actionLogin} from './pages/authentication/login/Login';
 import Register, {action as actionRegister} from './pages/authentication/register/Register';
@@ -12,7 +12,8 @@ import Books from './pages/maintenance/books/Books';
 import Categories from './pages/maintenance/categories/Categories';
 import States from './pages/maintenance/states/States';
 import History from './pages/history/History';
-import Cart from './pages/Cart/Cart';
+import Cart from './pages/cart/Cart';
+import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
 
 function App() {
   const router = createBrowserRouter([
@@ -20,12 +21,13 @@ function App() {
       path: '/',
       element: <Header />,
       children: [
-        { index:true, element: <Home /> },
+        { index:true, element: <Home /> , loader: homeLoader},
         { path:'books', element: <Books /> },
         { path:'categories', element: <Categories /> },
         { path:'states', element: <States /> },
         { path:'history', element: <History /> },
         { path:'cart', element: <Cart /> },
+        { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },
       ]
     },
     {
