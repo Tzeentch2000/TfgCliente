@@ -11,14 +11,12 @@ const BookDetails = () => {
   return (
     <div className={style.container}>
       <h3 className={style.title}>{name} <span className={style.author}>{author}</span></h3>
-      <div className={style.content}>
         <img src={require('../../assets/images/book.jpg')} className={style.image}></img>
+        <p className={style.categories}>
+          {categories.map(c => (<span key={c.id.toString()} className={style.category}>{c.name}</span>))}
+          <span>{state.name}</span>
+        </p>
         <p className={style.description}>{description}</p>
-      </div>
-      <div className={style.information}>
-        <p className={style.categories}>{categories.map(c => (<span key={c.id.toString()} className={style.category}>{c.name}</span>))}</p>
-        <p className={style.state}>{state.name}</p>
-      </div>
       <button>Add to cart - {price.toString()}$</button>
     </div>
   )

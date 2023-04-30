@@ -54,3 +54,19 @@ export interface IHomeLoaderData{
     categories:ICategory[],
     states:IState[]
 }
+
+export interface IFilter{
+    category:string,
+    state:string,
+    search:string
+}
+
+export interface IEdit{
+    edit:boolean
+    handleEdit:(id:number) => void
+}
+
+export interface IDelete{
+    edit:boolean
+    handleDelete:(id:number) => void
+}

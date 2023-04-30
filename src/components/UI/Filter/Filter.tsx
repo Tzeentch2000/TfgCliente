@@ -4,12 +4,15 @@ import { ICategory, IState } from '../../../interfaces/Interfaces'
 
 type Props = {
     items : (ICategory | IState)[]
+    handleChange: (value:string) => void
 }
 
 const Filter = (props:Props) => {
-    const { items } = props
+    const { items,handleChange } = props
   return (
-    <select className={style.select}>
+    <select className={style.select}
+      onChange={e => handleChange(e.target.value)}
+    >
       <option value=''>None</option>
       {items.map(item => (
         <option className={style.option} key={item.id.toString()} value={item.id.toString()}>{item.name}</option>

@@ -14,18 +14,28 @@
     
     &:hover{
         filter: brightness(1.1);
-        cursor: pointer;
+       
+        .image{
+            background-size: 103%;
+        }
     }
     
     .image{
         height: 14rem;
         background-image: url('../../assets/images/book.jpg');
         background-repeat: no-repeat;
-        background-size: cover;
+        //background-size: cover;
+        background-size: 100%;
         background-position: center;
 
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
+        transition-property: all;
+        transition-duration: .6s;
+
+        &:hover{
+            background-size: 103%;
+        }
     }
 
     .textContent{
