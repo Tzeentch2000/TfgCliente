@@ -12,7 +12,7 @@ const BookList = (props:Props) => {
   return (
     <div className={style.bookList}>
         {books.map(b => (
-            <Book book={b}/>
+            <Book key={b.id.toString()} book={b}/>
         ))}
     </div>
   )

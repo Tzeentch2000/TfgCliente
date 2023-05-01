@@ -1,28 +1,30 @@
+import { ReactNode } from "react"
+
 export interface IToken {
     id: string,
     isAdmin: boolean
 }
 
 export interface IState{
-    id:Number,
+    id:number,
     name:string,
     description:string,
     isActive:boolean
 }
 
 export interface ICategory{
-    id:Number,
+    id:number,
     name:string,
     description:string,
     isActive:boolean
 }
 
 export interface IBook{
-    id:Number,
+    id:number,
     name:string,
     description:string,
     author:string,
-    price:Number,
+    price:number,
     image:string,
     categories:ICategory[],
     state:IState,
@@ -30,21 +32,29 @@ export interface IBook{
 }
 
 export interface IOrders{
-    id:Number,
-    amount:Number,
-    Date:Date,
-    BookId:Number,
-    Book:IBook,
-    UserId:Number
+    id:number,
+    amount:number,
+    date:Date,
+    bookId:number,
+    book:IBook,
+    userId:number
+}
+
+export interface IFormatedOrders{
+    id:number,
+    amount:number,
+    date:Date,
+    bookName:string
+    price:string
 }
 
 export interface IUser{
-    id:Number,
+    id:number,
     email:string,
     name:string,
     surname:string,
     password:string,
-    phone:Number,
+    phone:number,
     isAdmin:boolean,
     orders:IOrders
 }
@@ -61,12 +71,7 @@ export interface IFilter{
     search:string
 }
 
-export interface IEdit{
-    edit:boolean
-    handleEdit:(id:number) => void
-}
-
-export interface IDelete{
-    edit:boolean
-    handleDelete:(id:number) => void
+export interface IEditTable{
+    modalTitle:string
+    modalContent:ReactNode
 }

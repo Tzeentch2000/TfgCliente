@@ -1,0 +1,68 @@
+@import '../../../assets/var/var.scss';
+
+.modal{
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+
+    .modalCard{
+        background-color: #fefefe;
+        margin: auto;
+        padding: 1rem .8rem;
+        border: 1px solid #888;
+        width: 40%;
+
+        @media screen and (max-width: 1110px) {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 900px) {
+            width: 60%;
+        }
+
+        @media screen and (max-width: 900px) {
+            width: 60%;
+        }
+
+        @media screen and (max-width: 790px) {
+            margin-top: 19rem;
+        }
+    }
+
+    .modalHeader{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .modalTitle{
+            flex: 1;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .modalClose{
+            font-weight: bold;
+            padding: .5rem;
+            color: $primary-color;
+            transition-property: color;
+            transition-duration: .5s;
+            &:hover{
+                cursor: pointer;
+                color: $crossRed;
+            }
+        }
+    }
+
+    .modalBody{
+        padding: 0 1rem;
+    }
+}

@@ -11,7 +11,7 @@ import Header from './layouts/header/Header';
 import Books from './pages/maintenance/books/Books';
 import Categories from './pages/maintenance/categories/Categories';
 import States from './pages/maintenance/states/States';
-import History from './pages/history/History';
+import History, {loader as historyLoader} from './pages/history/History';
 import Cart from './pages/cart/Cart';
 import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
 
@@ -25,7 +25,7 @@ function App() {
         { path:'books', element: <Books /> },
         { path:'categories', element: <Categories /> },
         { path:'states', element: <States /> },
-        { path:'history', element: <History /> },
+        { path:'history', element: <History />, loader: historyLoader },
         { path:'cart', element: <Cart /> },
         { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },
       ]

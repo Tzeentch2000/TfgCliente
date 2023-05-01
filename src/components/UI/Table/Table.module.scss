@@ -1,0 +1,50 @@
+@import '../../../assets/var/var.scss';
+
+table{
+    width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: $primary-color;
+    border-style: solid;
+    color: $primary-color;
+  
+  td,th {
+    border-width: 2px;
+    border-color: $primary-color;
+    border-style: solid;
+    padding: 5px;
+  }
+  
+  thead {
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+
+  .containerButton{
+    text-align: center;
+
+    .editButton,.deleteButton{
+      all: unset;
+      padding: .5rem 1rem;
+      color: $secondary-color;
+      font-weight: bolder;
+      background-color: $primary-color;
+      margin: .1rem .2rem;
+
+      &:hover{
+        filter: brightness(1.25);
+        cursor: pointer;
+      }
+    }
+
+    .editButton{
+      color: $edit;
+    }
+
+    .deleteButton{
+      color: $delete;
+    }
+  }
+
+}

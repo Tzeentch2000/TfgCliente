@@ -13,17 +13,22 @@ const Header = () => {
   const {user,setUser} = useAuth();
 
     useEffect(() => {
-      if(getCookie('token') === null){
+      try{
+        if(getCookie('token') === null){
           navigate('/authentication')
           return
-      }
+        }
 
-      const takeData = async () =>{
-        const _token = await getCookie('token')
-        const _user:IUser = await chargeUser(validateToken(_token).id,_token)
-        setUser(_user)
+        const takeData = async () =>{
+          const _token = await getCookie('token')
+          const _user:IUser = await chargeUser(validateToken(_token).id,_token)
+          setUser(_user)
+        }
+        takeData()
+      }catch(e){
+        navigate('/authentication')
+        return
       }
-      takeData()
     },[])
 
     const handleClickCloseSession = () => {

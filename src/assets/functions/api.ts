@@ -6,6 +6,7 @@ const GETUSER = `${SERVER}User/`
 const GETBOOKS = `${SERVER}Book`
 const GETCATEGORIES = `${SERVER}Category`
 const GETSTATES = `${SERVER}State`
+const GETORDERSBYUSERID = `${SERVER}Order/UserId/`
 
 const config = (token:string) => {
   return {
@@ -70,8 +71,17 @@ export async function getStates(){
   });
 }
 
-export async function getBookById(id:Number){
+export async function getBookById(id:number){
   return axios.get(`${GETBOOKS}/${id}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getOrderByUserId(id:number,token:string){
+  return axios.get(`${GETORDERSBYUSERID}${id}`,config(token))
   .then(response => response.data)
   .catch(function (error) {
       console.log(error);
