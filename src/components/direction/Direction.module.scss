@@ -1,0 +1,45 @@
+@import '../../assets/var/var.scss';
+
+@mixin transition {
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+.formulario{
+    label{
+        display: block;
+        margin-bottom: .5rem;
+        font-weight: 600;
+        color: $primary-color;
+        font-size: 1.1rem;
+    }
+
+    input{
+        width: 95.3%;
+        border: 1.5px solid $primary-color;
+        padding: .5rem;
+        border-radius: 5px;
+    }
+
+    input[type=submit]{
+        @include transition;
+        width: 20%;
+        display: block;
+        margin-left: auto;
+        padding: .7rem;
+        border: 0;
+        background-color: $primary-color;
+        color: $grey;
+        font-weight: 600;
+        border-radius: 0;
+
+        &:hover{
+            cursor: pointer;
+            background-color: $hover-primary-color;
+            color: $secondary-color;
+        }
+    }
+    .bloque{
+        margin: 1rem 0;
+    }
+}

@@ -32,9 +32,6 @@
             width: 60%;
         }
 
-        @media screen and (max-width: 790px) {
-            margin-top: 19rem;
-        }
     }
 
     .modalHeader{
@@ -45,12 +42,15 @@
         .modalTitle{
             flex: 1;
             text-align: center;
-            font-size: 1.4rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: bolder;
         }
 
+        .modalClose::before{
+            content: 'X';
+        }
         .modalClose{
-            font-weight: bold;
+            font-size: 1.4rem;
             padding: .5rem;
             color: $primary-color;
             transition-property: color;

@@ -1,12 +1,17 @@
 import axios from "axios"
+import { IBuyCart, IOrderCart } from "../../interfaces/Interfaces"
 const SERVER = 'https://localhost:7224/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
 const GETUSER = `${SERVER}User/`
 const GETBOOKS = `${SERVER}Book`
+const GETACTIVEBOOKS = `${SERVER}Active/Books`
 const GETCATEGORIES = `${SERVER}Category`
+const GETACTIVECATEGORIES = `${SERVER}Active/Categories`
 const GETSTATES = `${SERVER}State`
+const GETACTIVESTATES = `${SERVER}Active/States`
 const GETORDERSBYUSERID = `${SERVER}Order/UserId/`
+const BUY = `${SERVER}Order`
 
 const config = (token:string) => {
   return {
@@ -53,6 +58,15 @@ export async function getBooks(){
   });
 }
 
+export async function getActiveBooks(){
+  return axios.get(`${GETACTIVEBOOKS}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
 export async function getCategories(){
   return axios.get(`${GETCATEGORIES}`)
   .then(response => response.data)
@@ -62,8 +76,27 @@ export async function getCategories(){
   });
 }
 
+export async function getActiveCategories(){
+  return axios.get(`${GETACTIVECATEGORIES}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+
 export async function getStates(){
   return axios.get(`${GETSTATES}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getActiveStates(){
+  return axios.get(`${GETACTIVESTATES}`)
   .then(response => response.data)
   .catch(function (error) {
       console.log(error);
@@ -87,4 +120,13 @@ export async function getOrderByUserId(id:number,token:string){
       console.log(error);
       return null;
   });
+}
+
+export async function buy(cart: IBuyCart[],token:string){
+  return axios.post(BUY,cart,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
 }

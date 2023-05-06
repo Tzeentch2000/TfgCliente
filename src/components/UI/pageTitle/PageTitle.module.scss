@@ -1,0 +1,12 @@
+@import '../../../assets/var/var.scss';
+
+.title{
+    background-color: $secondary-color;
+    margin: auto;
+    padding: 1rem;
+    width: fit-content;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    border-radius: 100%;
+}

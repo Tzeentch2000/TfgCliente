@@ -1,0 +1,27 @@
+@import '../../assets/var/var.scss';
+
+.container{
+    margin: 1rem auto 0 auto;
+    font-size: 1.3rem;
+    max-width: 40rem;
+
+    .question{
+        text-align: center;
+    }
+
+    .btn-container{
+        margin-top: 1rem;
+        text-align: right;
+        button{
+            all: unset;
+            margin: 0 .8rem;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        
+        button:nth-child(1){
+            color: $crossRed;
+        }
+    }
+}

@@ -2,12 +2,13 @@ import React, { useEffect, useReducer, useState } from 'react'
 import style from './Home.module.scss'
 import { useLoaderData } from 'react-router-dom'
 import { IBook, IFilter, IHomeLoaderData } from '../../interfaces/Interfaces'
-import { getBooks, getCategories, getStates } from '../../assets/functions/api'
+import { getActiveBooks, getActiveCategories, getActiveStates } from '../../assets/functions/api'
 import Filter from '../../components/UI/Filter/Filter'
 import SearchBar from '../../components/search/SearchBar'
 import BookList from '../../components/bookList/BookList'
 import { filteredDataReducer } from './DataFilterReducer'
 import { filterCategory, filterSearch, filterState } from '../../assets/functions/filters'
+import PageTitle from '../../components/UI/pageTitle/PageTitle'
 
 const initialFilterData:IFilter = {
   category:'',
@@ -40,7 +41,7 @@ const Home = () => {
 
   return (
     <div className={style.container}>
-      <h2 className={style.title}>Book List</h2>
+      <PageTitle title='Home' />
       <div className={style.filter}>
         <div className={style.select}>
           <Filter items={data.categories} handleChange={handleChangeCategory} />
@@ -57,8 +58,8 @@ export default Home
 
 export async function loader(){
   const data = {} as IHomeLoaderData
-  data.books = await getBooks()
-  data.categories = await getCategories()
-  data.states = await getStates()
+  data.books = await getActiveBooks()
+  data.categories = await getActiveCategories()
+  data.states = await getActiveStates()
   return data
 }

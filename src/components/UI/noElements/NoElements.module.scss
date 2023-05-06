@@ -1,0 +1,10 @@
+@import '../../../assets/var/var.scss';
+
+.nothing{
+    font-size: 1.5rem;
+    background-color: $secondary-color;
+    margin: auto;
+    padding: 1rem;
+    width: fit-content;
+    border: 2px solid $primary-color;
+}

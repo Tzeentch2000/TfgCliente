@@ -14,6 +14,8 @@ import States from './pages/maintenance/states/States';
 import History, {loader as historyLoader} from './pages/history/History';
 import Cart from './pages/cart/Cart';
 import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
+import { CartProvider } from './context/CartProvider';
+import {action as shopAction} from './components/direction/Direction';
 
 function App() {
   const router = createBrowserRouter([
@@ -26,7 +28,7 @@ function App() {
         { path:'categories', element: <Categories /> },
         { path:'states', element: <States /> },
         { path:'history', element: <History />, loader: historyLoader },
-        { path:'cart', element: <Cart /> },
+        { path:'cart', element: <Cart />, action: shopAction },
         { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },
       ]
     },
@@ -42,7 +44,9 @@ function App() {
   ])
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   );
 }

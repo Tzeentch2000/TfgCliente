@@ -3,7 +3,7 @@
 .container{
     margin: auto;
     border-radius: 10px;
-    width: 14.6rem;
+    width: 15.6rem;
     background-color: $primary-color;
     color: $grey;
     text-align: center;
@@ -21,7 +21,7 @@
     }
     
     .image{
-        height: 14rem;
+        height: 15rem;
         background-image: url('../../assets/images/book.jpg');
         background-repeat: no-repeat;
         //background-size: cover;
@@ -44,8 +44,14 @@
         margin: auto;
 
         h3{
+            margin-top: .6rem;
             color: $active;
             margin-bottom: 0;
+            font-size: 1.8rem;
+            display: -webkit-box; /*Después de 2 líneas me lo ocultas*/
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden; 
         }
         p{
             margin-top: .7rem;

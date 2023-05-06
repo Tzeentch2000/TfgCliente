@@ -1,0 +1,90 @@
+@use 'sass:color';
+@import '../../assets/var/var.scss';
+
+.nothing{
+    font-size: 1.5rem;
+    background-color: $secondary-color;
+    margin: auto;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.actions{
+    text-align: center;
+    .plus, .min{
+        display: inline-block;
+        font-size: 1.7rem;
+        font-weight: bolder;
+        width: 2rem;
+        background-color: $gray-cool-10;
+        color: $secondary-color;
+        margin: .2rem 5%;
+        transition-property: all;
+        transition-duration: .5s;
+
+        &:hover{
+            cursor: pointer;
+            background-color: color.adjust($color: $secondary-color, $lightness: -85%);
+        }
+    }
+    
+    .plus{
+        &::before{
+            content: '+';
+        }
+    }
+    
+    .min{
+        &::before{
+            content: '-';
+        }
+    }
+}
+
+.remove{
+    text-align: center;
+    button{
+        all: unset;
+        color: $delete;
+        padding: .5rem 1rem;
+        font-weight: bolder;
+        background-color: $primary-color;
+        margin: .1rem .2rem;
+  
+        &:hover{
+          filter: brightness(1.25);
+          cursor: pointer;
+        }
+    }
+}
+
+.btn{
+    all: unset;
+    width: 20%;
+    display: block;
+    margin-top: 1rem;
+    margin-left: auto;
+    padding: .7rem;
+    border: 0;
+    background-color: $primary-color;
+    color: $grey;
+    font-weight: 600;
+    border-radius: 0;
+    text-align: center;
+
+    &:hover{
+        cursor: pointer;
+        color: $secondary-color;
+        background-color: color.adjust($color: $primary-color, $lightness: -85%);
+    }
+}
+
+.price{
+    display: block;
+    width: 5rem;
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: .4;
+}

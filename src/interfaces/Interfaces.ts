@@ -40,10 +40,22 @@ export interface IOrders{
     userId:number
 }
 
+export interface IOrderCart{
+    amount:number,
+    bookId:number,
+    book:IBook,
+    userId:number
+}
+
+export interface IBuyCart{
+    amount:number,
+    bookId:number
+}
+
 export interface IFormatedOrders{
     id:number,
     amount:number,
-    date:Date,
+    date:string,
     bookName:string
     price:string
 }
@@ -74,4 +86,10 @@ export interface IFilter{
 export interface IEditTable{
     modalTitle:string
     modalContent:ReactNode
+}
+
+export interface modalRemoveCartElement{
+    modal:boolean
+    title:string
+    bookId:number
 }

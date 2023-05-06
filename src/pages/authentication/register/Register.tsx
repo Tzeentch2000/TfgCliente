@@ -72,9 +72,8 @@ export async function action({request}: any){
     error = 'Incorrect passwords'
     return error
   }
-
-  console.log(datos)
-  register({email,password,name,surname,phone})
+  //LE HE PUESTO EL AWAIT, SI FUNCIONA MAL ESTA PARTE TENGO QUE QUITAR EL AWAIT
+  await register({email,password,name,surname,phone})
 
   return redirect('/authentication')
 }

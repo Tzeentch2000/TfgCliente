@@ -7,9 +7,12 @@ import { useNavigate,NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import { chargeUser } from '../../assets/functions/api'
 import { IUser } from '../../interfaces/Interfaces'
+import useCart from '../../hooks/useCart'
+import { IOrderCart } from '../../interfaces/Interfaces'
 
 const Header = () => {
   const navigate = useNavigate()
+  const cart = useCart()
   const {user,setUser} = useAuth();
 
     useEffect(() => {
@@ -24,7 +27,13 @@ const Header = () => {
           const _user:IUser = await chargeUser(validateToken(_token).id,_token)
           setUser(_user)
         }
+
+        const takeCart = () => {
+          if(getCookie('cart') === null) return
+          cart.setCart(getCookie('cart') as IOrderCart)
+        }
         takeData()
+        takeCart()
       }catch(e){
         navigate('/authentication')
         return
@@ -35,6 +44,8 @@ const Header = () => {
       deleteCookie('token')
       navigate('/authentication')
     }
+
+    const cartCount = cart.cart.length > 0 ? `(${cart.cart.length})` : ''
     
   return (
     <>
@@ -57,10 +68,10 @@ const Header = () => {
                 <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>History</NavLink>
               </li>
               <li>
-                <NavLink to='Cart' className={({ isActive }) =>isActive ? style.active : ''}>Cart</NavLink>
+                <NavLink to='Cart' className={({ isActive }) =>isActive ? style.active : ''}>Cart{cartCount}</NavLink>
               </li>
               <li>
-                <a onClick={handleClickCloseSession}>{user.name}</a>
+                <a onClick={handleClickCloseSession}>Close session</a>
               </li>
           </ul>
         </nav>

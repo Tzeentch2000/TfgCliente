@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './BookDetails.module.scss'
 import { getBookById } from '../../assets/functions/api'
 import { useLoaderData } from 'react-router-dom'
 import { IBook } from '../../interfaces/Interfaces'
-import a from '../../assets/images/book.jpg'
+import Modal from '../../components/UI/modal/Modal'
+import AmountForm from '../../components/amountForm/AmountForm'
+import Alert from '../../components/UI/Alert/Alert'
+import useCart from '../../hooks/useCart'
 
 const BookDetails = () => {
     const book = useLoaderData() as IBook
+    const cart = useCart()
+    const [ modal,setModal ] = useState(false)
     const { id,name,description,author,price,image,categories,state,isActive } = book
+
+    const handleClick = () => {
+      setModal(!modal)
+    }
+
+    const isInCart = () => {
+      return cart.cart.find(a => a.bookId === book.id)
+    }
+
+    let showAddToCartButton = true
+    if(isInCart !== undefined || cart.cart.length >= 10) showAddToCartButton = false
+
   return (
     <div className={style.container}>
+      {isInCart() !== undefined && <Alert type='success' message='El producto ha sido añadido al carrito' />}
+      {cart.cart.length >= 10 && <Alert type='error' message='Maximum cart capacity reached' />}
       <h3 className={style.title}>{name} <span className={style.author}>{author}</span></h3>
         <img src={require('../../assets/images/book.jpg')} className={style.image}></img>
         <p className={style.categories}>
@@ -17,7 +36,8 @@ const BookDetails = () => {
           <span>{state.name}</span>
         </p>
         <p className={style.description}>{description}</p>
-      <button>Add to cart - {price.toString()}$</button>
+      {isInCart() === undefined && <button onClick={handleClick}>Add to cart - {price.toString()}$</button>}
+      {modal && <Modal title={`Comprar "${name}"`} setModal={handleClick} editId={id.toString()}><AmountForm book={book} handleCloseModal={handleClick} /></Modal>}
     </div>
   )
 }
