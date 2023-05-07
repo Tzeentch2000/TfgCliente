@@ -60,7 +60,7 @@ const Cart = () => {
     cart.setCart(newCart)
   }
 
-  const removeElementOfCart = (id:number) => {
+  const removeElementOfCart = async (id:number) => {
     const newCart = cart.cart.filter(a => a.bookId !== id)
     cart.setCart(newCart)
     setCookie('cart',newCart,1)

@@ -12,6 +12,7 @@ const GETSTATES = `${SERVER}State`
 const GETACTIVESTATES = `${SERVER}Active/States`
 const GETORDERSBYUSERID = `${SERVER}Order/UserId/`
 const BUY = `${SERVER}Order`
+const DELETEBOOK =`${SERVER}Book/`
 
 const config = (token:string) => {
   return {
@@ -129,4 +130,12 @@ export async function buy(cart: IBuyCart[],token:string){
       console.log(error);
       return -1;
     });
+}
+
+export async function deleteBook(id: number,token:string){
+  return axios.delete(`${DELETEBOOK}${id}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+    throw new Error('Cant delete book')
+  });
 }

@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     button{
         all: unset;
@@ -15,11 +16,18 @@
         margin: .1rem .2rem;
         color: $green;
         font-size: 1.2rem;
+        text-align: center;
   
         &:hover{
           filter: brightness(1.25);
           cursor: pointer;
         }
     }
+}
+
+.error{
+  text-align: center;
+  font-size: 1.3rem;
+  color: $crossRed;
 }
 

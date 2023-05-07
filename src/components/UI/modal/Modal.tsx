@@ -7,11 +7,12 @@ type Props = {
   title:string
   children: ReactNode
   setModal:(modal:boolean) => void
-  editId?:string
+  editId?:string,
+  removeError?:(error:boolean) => void
 }
 
 const Modal = (props:Props) => {
-  const { title,children,setModal,editId } = props
+  const { title,children,setModal,editId,removeError } = props
   const [ book, setBook ] = useState({} as IBook)
 
   useEffect(() => {
@@ -24,12 +25,17 @@ const Modal = (props:Props) => {
     }
   },[])
 
+  const closeModal = () => {
+    setModal(false)
+    if(removeError !== undefined) removeError(false)
+  }
+
   return (
     <div className={style.modal}>
       <div className={style.modalCard}>
         <div className={style.modalHeader}>
           <div className={style.modalTitle}>{title}</div>
-          <div className={style.modalClose} onClick={() => setModal(false)}></div>
+          <div className={style.modalClose} onClick={closeModal}></div>
         </div>
         <div className={style.modalBody}>
           {children}

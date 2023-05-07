@@ -1,0 +1,101 @@
+@import '../../../assets/var/var.scss';
+
+@mixin transition {
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+.formulario{
+    max-width: 36rem;
+    margin: auto;
+    label{
+        display: block;
+        margin-bottom: .5rem;
+        font-weight: 600;
+        color: $primary-color;
+        font-size: 1.1rem;
+    }
+
+    input{
+        width: 95.3%;
+        border: 1.5px solid $primary-color;
+        padding: .5rem;
+        border-radius: 5px;
+    }
+
+    input[type=submit]{
+        @include transition;
+        width: 100%;
+        margin-top: 1.3em;
+        padding: .7rem;
+        border: 0;
+        background-color: $primary-color;
+        color: $grey;
+        font-weight: 600;
+        border-radius: 0;
+
+        &:hover{
+            cursor: pointer;
+            background-color: $hover-primary-color;
+            color: $secondary-color;
+        }
+    }
+
+    textarea{
+        width: 97.3%;
+    }
+
+    .bloque{
+        margin: 1rem 0;
+    }
+
+    .back{
+        @include transition;
+        width: fit-content;
+        margin: .7rem auto 0 auto;
+        padding: 0;
+        text-align: center;
+        color: $primary-color;
+        border-bottom: 1.4px solid $secondary-color;
+
+        &:hover{
+            cursor: pointer;
+            border-bottom: 1.4px solid black;
+        }
+    }
+
+    .checkbox-bloque{
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+        margin-top: 0;
+        .checkbox-container{
+            display: flex;
+            width: fit-content;
+            align-items: center;
+            justify-content: center;
+    
+            label{
+                margin: auto;
+                padding-left: .5rem;
+                font-weight: normal;
+            }
+        }
+
+        input[type="checkbox"]{
+            accent-color: $primary-color;
+        }
+    }
+
+    select{
+        all: unset;
+        text-align-last:center;
+        cursor: pointer;
+        background-color: $secondary-color;
+        width: 93%;
+        text-align: left;
+        padding: .4rem .8rem;
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+    }
+}

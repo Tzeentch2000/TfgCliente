@@ -11,13 +11,21 @@ type Props = {
     th:string[],
     td: {[key: string]: any}[],
     properties:string[],
-    editAction?:(modal:boolean) => void
+    editAction?:React.Dispatch<ModalActions>
     deleteAction?:React.Dispatch<ModalActions>
 }
 
 const Table = (props:Props) => {
 
   const handleClickEdit = (id:number,title:string) => {
+    if(editAction!==undefined){
+      editAction({type:'changeId',playload:id})
+      editAction({type:'changeModal',playload:true})
+      editAction({type:'changeTitle',playload:title})
+    }
+  }
+
+  const handleClickDelete = (id:number,title:string) => {
     if(deleteAction!==undefined){
       deleteAction({type:'changeId',playload:id})
       deleteAction({type:'changeModal',playload:true})
@@ -46,8 +54,8 @@ const Table = (props:Props) => {
             <td key={index}>{_td[p]}</td>
           ))}
           {(editAction || deleteAction) && (<td className={style.containerButton}>
-            {editAction && (<button className={style.editButton} onClick={() => editAction(true)}>Edit</button>)}
-            {deleteAction && (<button className={style.deleteButton} onClick={() => handleClickEdit(_td['id'],_td['name'])}>Delete</button>)}
+            {editAction && (<button className={style.editButton} onClick={() => handleClickEdit(_td['id'],_td['name'])}>Edit</button>)}
+            {deleteAction && (<button className={style.deleteButton} onClick={() => handleClickDelete(_td['id'],_td['name'])}>Delete</button>)}
           </td>)}
         </tr>
       ))}

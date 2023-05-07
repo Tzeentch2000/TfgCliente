@@ -20,7 +20,7 @@ const Direction = () => {
     }
 
     const emptyCart = () => {
-      cart.setCart([] as IOrderCart[])
+      if(direction.trim() !== '') cart.setCart([] as IOrderCart[])
     }
 
   return (

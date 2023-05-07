@@ -3,7 +3,7 @@
 .modal{
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    //padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -15,10 +15,12 @@
 
     .modalCard{
         background-color: #fefefe;
-        margin: auto;
+        margin: 100px auto 100px auto;
         padding: 1rem .8rem;
         border: 1px solid #888;
         width: 40%;
+        max-height: 700px;
+        overflow-x:hidden;
 
         @media screen and (max-width: 1110px) {
             width: 50%;
