@@ -1,0 +1,25 @@
+@use 'sass:color';
+@import '../../../assets/var/var.scss';
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button{
+        all: unset;
+        padding: .5rem 1rem;
+        color: $secondary-color;
+        font-weight: bolder;
+        background-color: $primary-color;
+        margin: .1rem .2rem;
+        color: $green;
+        font-size: 1.2rem;
+  
+        &:hover{
+          filter: brightness(1.25);
+          cursor: pointer;
+        }
+    }
+}
+

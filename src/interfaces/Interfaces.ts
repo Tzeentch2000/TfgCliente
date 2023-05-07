@@ -83,11 +83,6 @@ export interface IFilter{
     search:string
 }
 
-export interface IEditTable{
-    modalTitle:string
-    modalContent:ReactNode
-}
-
 export interface modalRemoveCartElement{
     modal:boolean
     title:string

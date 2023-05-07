@@ -9,6 +9,7 @@ import { chargeUser } from '../../assets/functions/api'
 import { IUser } from '../../interfaces/Interfaces'
 import useCart from '../../hooks/useCart'
 import { IOrderCart } from '../../interfaces/Interfaces'
+import Footer from '../footer/Footer'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -79,6 +80,7 @@ const Header = () => {
       <div>
         <Outlet />
       </div>
+      <Footer />
     </>
   )
 }

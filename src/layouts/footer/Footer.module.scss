@@ -1,0 +1,46 @@
+@import '../../assets/var/var.scss';
+.footer{
+    background-color: $primary-color;
+    color: $secondary-color;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: auto;
+
+    ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 80rem;
+        margin: auto;
+
+        li{
+            padding: 2rem;
+            list-style: none;
+
+            a{
+                color: $secondary-color;
+                text-decoration: none;
+                transition-property: all;
+                transition-duration: .5s;
+                &:hover{
+                    cursor: pointer;
+                    color: $active;
+                }
+            }
+
+            .active{
+                color:$active
+            }
+        }
+
+        @media screen and (max-width: 790px) {
+           flex-direction: column;
+
+           li{
+            padding: 1rem;
+           }
+        }
+    }
+}
