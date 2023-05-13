@@ -14,3 +14,8 @@ export function validateToken(token:string ){
     //const object = {id:data.id,isAdmin:data.userRole}
     //return data.id
 }
+
+export function validatePrice(price:string){
+    let regex = /^[-+]?[0-9]+\.[0-9]+$/;
+    return regex.test(price)
+}

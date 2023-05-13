@@ -21,6 +21,21 @@ const Books = () => {
   const [ modal,dispatchModal ] = useReducer(ModalReducer,{modal:false,title:'',bookId:0})
   const [ failedToDelete,setFailedToDelete ] = useState(false)
 
+  const addBook = (book:IBook) => {
+    _setBooks((prevBooks: any) => {
+      return [book,...prevBooks]
+    })
+  }
+
+  const updateBook = (updBook:IBook) => {
+    console.log(updBook)
+    const updatedBooks = _books.map(b => {
+      if(b.id === updBook.id) return updBook
+      return b
+    })
+    _setBooks(updatedBooks)
+  }
+
   const changeCreateModal = (modal:boolean) => {
     setCreateModal(modal)
   }
@@ -43,9 +58,7 @@ const Books = () => {
       await deleteBook(id,token)
 
       const newBooks = _books.filter(b => b.id !== id)
-      _setBooks((prevBooks: any) => {
-        return [newBooks,...prevBooks]
-      })
+      _setBooks(newBooks)
     }catch(e){
       changeFailedToDeleteModal(true)
       throw new Error('Cant delete book')
@@ -72,11 +85,11 @@ const Books = () => {
       </Container>
 
       {createModal &&  <Modal title='Create book' setModal={changeCreateModal}>
-        <BookForm />
+        <BookForm closeModal={changeCreateModal} addBook={addBook} />
       </Modal>}
 
       {editModal.modal &&   <Modal title={`Edit book "${editModal.title}"`} setModal={changeEditModal}>
-        <BookForm bookId={editModal.bookId} />
+        <BookForm bookId={editModal.bookId} updateBook={updateBook} closeModal={changeEditModal} />
       </Modal>}
 
       {modal.modal &&  <Modal title={'Remove'} setModal={changeDeleteModal} removeError={changeFailedToDeleteModal} >

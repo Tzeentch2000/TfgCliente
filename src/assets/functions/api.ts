@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IBuyCart, IOrderCart } from "../../interfaces/Interfaces"
+import { IBook, IBuyCart, IOrderCart, InsertBook } from "../../interfaces/Interfaces"
 const SERVER = 'https://localhost:7224/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
@@ -138,4 +138,22 @@ export async function deleteBook(id: number,token:string){
   .catch(function (error) {
     throw new Error('Cant delete book')
   });
+}
+
+export async function createBook(book: InsertBook,token:string){
+  return axios.post(GETBOOKS,book,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
+}
+
+export async function updateBook(book: IBook,token:string){
+  return axios.put(`${GETBOOKS}/${book.id}`,book,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
 }

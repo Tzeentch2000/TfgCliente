@@ -18,6 +18,7 @@ type Props = {
 const Table = (props:Props) => {
 
   const handleClickEdit = (id:number,title:string) => {
+    console.log(id)
     if(editAction!==undefined){
       editAction({type:'changeId',playload:id})
       editAction({type:'changeModal',playload:true})

@@ -88,3 +88,21 @@ export interface modalRemoveCartElement{
     title:string
     bookId:number
 }
+
+export interface bookMaintenanceCategory{
+    isIn:boolean
+    category:ICategory
+}
+
+
+export interface InsertBook{
+    id?:number,
+    name:string,
+    description:string,
+    author:string,
+    price:number,
+    image:string,
+    categories:ICategory[],
+    state:IState,
+    isActive:boolean
+}
