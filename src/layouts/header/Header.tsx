@@ -43,6 +43,7 @@ const Header = () => {
 
     const handleClickCloseSession = () => {
       deleteCookie('token')
+      deleteCookie('cart')
       navigate('/authentication')
     }
 
@@ -66,7 +67,7 @@ const Header = () => {
                 <NavLink to='States' className={({ isActive }) =>isActive ? style.active : ''}>States</NavLink>
               </li>
               <li>
-                <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>History</NavLink>
+                <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>Orders</NavLink>
               </li>
               <li>
                 <NavLink to='Cart' className={({ isActive }) =>isActive ? style.active : ''}>Cart{cartCount}</NavLink>

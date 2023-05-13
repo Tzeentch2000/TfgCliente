@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react'
-import style from './Books.module.scss'
+import style from '../Maintenance.module.scss'
 import Container from '../../../components/UI/container/Container'
 import PageTitle from '../../../components/UI/pageTitle/PageTitle'
 import { deleteBook, getBooks } from '../../../assets/functions/api'
@@ -78,7 +78,7 @@ const Books = () => {
     <>
       <Container>
         <div className={style.header}>
-          <PageTitle title='Books maintenance' />
+          <PageTitle title='Books backoffice' />
           <button onClick={() => changeCreateModal(true)}>New Book</button>
         </div>
         {table}

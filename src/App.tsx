@@ -9,8 +9,8 @@ import Login, {action as actionLogin} from './pages/authentication/login/Login';
 import Register, {action as actionRegister} from './pages/authentication/register/Register';
 import Header from './layouts/header/Header';
 import Books, {loader as booksLoader} from './pages/maintenance/books/Books';
-import Categories from './pages/maintenance/categories/Categories';
-import States from './pages/maintenance/states/States';
+import Categories, {loader as categoriesLoader} from './pages/maintenance/categories/Categories';
+import States, {loader as statesLoader} from './pages/maintenance/states/States';
 import History, {loader as historyLoader} from './pages/history/History';
 import Cart from './pages/cart/Cart';
 import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
@@ -25,8 +25,8 @@ function App() {
       children: [
         { index:true, element: <Home /> , loader: homeLoader},
         { path:'books', element: <Books />, loader: booksLoader },
-        { path:'categories', element: <Categories /> },
-        { path:'states', element: <States /> },
+        { path:'categories', element: <Categories />, loader: categoriesLoader },
+        { path:'states', element: <States />, loader: statesLoader },
         { path:'history', element: <History />, loader: historyLoader },
         { path:'cart', element: <Cart />, action: shopAction },
         { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },

@@ -99,4 +99,9 @@
         border: 1px solid $primary-color;
         border-radius: 5px;
     }
+
+    input[type="color"]{
+        height: 3rem;
+    }
+    
 }

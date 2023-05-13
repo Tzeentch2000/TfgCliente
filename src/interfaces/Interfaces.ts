@@ -94,7 +94,6 @@ export interface bookMaintenanceCategory{
     category:ICategory
 }
 
-
 export interface InsertBook{
     id?:number,
     name:string,
@@ -105,4 +104,20 @@ export interface InsertBook{
     categories:ICategory[],
     state:IState,
     isActive:boolean
+}
+
+export interface InsertCategory{
+    id?:number,
+    name:string,
+    description:string,
+    isActive:boolean
+    //Color
+}
+
+export interface InsertState{
+    id?:number,
+    name:string,
+    description:string,
+    isActive:boolean
+    //Color
 }

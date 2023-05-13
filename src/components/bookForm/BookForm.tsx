@@ -43,7 +43,6 @@ const BookForm = (props:Props) => {
             if(props.bookId){
                 const b : IBook = await getBookById(props.bookId)
                 setBook(b)
-
                 const checkedCategories = c.map(_c => {
                     const finded = b.categories.find(bookCategory => bookCategory.id === _c.id)
                     if(finded === undefined) return {isIn:false,category:_c}
@@ -61,13 +60,7 @@ const BookForm = (props:Props) => {
         setLoading(false)
     },[setBook,setCategories,setStates])
 
-    const checkedIsActive = () => {
-        if(props.bookId && book) return book.isActive
-        return false
-    }
-
     const onHandleChangeCategory = (e: any) => {
-        console.log('a')
         const newCheckedState:bookMaintenanceCategory[] = checkedState.map(c => {
             if(c.category.id === Number(e.target.value)) return {...c,isIn:!c.isIn}
             return c
@@ -80,8 +73,7 @@ const BookForm = (props:Props) => {
         setBook({...book,state:newState[0]})
     }
 
-    const onHandleClickIsActive = () => {
-        console.log('a')
+    const onHandleChangeIsActive = () => {
         setBook({...book,isActive:!book.isActive})
     }
 
@@ -103,7 +95,6 @@ const BookForm = (props:Props) => {
             return 
         }
 
-        console.log(validatePrice(book.price.toString()))
         if(!validatePrice(book.price.toString())){
             setError('Invalid price')
             return
@@ -172,7 +163,7 @@ const BookForm = (props:Props) => {
         <label htmlFor='state'>Is Active:</label>      
         <div className={`${style.bloque} ${style['checkbox-bloque']}`}>
             <div className={style['checkbox-container']}>
-                <input type="checkbox" id='isActive' name='isActive' defaultChecked={checkedIsActive()} onChange={() => onHandleClickIsActive} />
+                <input type="checkbox" id='isActive' name='isActive' checked={book.isActive} onChange={onHandleChangeIsActive} />
                 <label htmlFor='isActive'>Active</label>
             </div>
         </div>

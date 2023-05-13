@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IBook, IBuyCart, IOrderCart, InsertBook } from "../../interfaces/Interfaces"
+import { IBook, IBuyCart, ICategory, IOrderCart, IState, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
 const SERVER = 'https://localhost:7224/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
@@ -13,6 +13,8 @@ const GETACTIVESTATES = `${SERVER}Active/States`
 const GETORDERSBYUSERID = `${SERVER}Order/UserId/`
 const BUY = `${SERVER}Order`
 const DELETEBOOK =`${SERVER}Book/`
+const DELETECATEGORY = `${SERVER}Category/`
+const DELETESTATE = `${SERVER}State/`
 
 const config = (token:string) => {
   return {
@@ -156,4 +158,74 @@ export async function updateBook(book: IBook,token:string){
       console.log(error);
       return -1;
     });
+}
+
+export async function getCategoryById(id:number){
+  return axios.get(`${GETCATEGORIES}/${id}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function createCategory(category:InsertCategory,token:string){
+  return axios.post(GETCATEGORIES,category,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function updateCategory(category: ICategory,token:string){
+  return axios.put(`${GETCATEGORIES}/${category.id}`,category,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
+}
+
+export async function deleteCategory(id: number,token:string){
+  return axios.delete(`${DELETECATEGORY}${id}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+    throw new Error('Cant delete category')
+  });
+}
+
+export async function getStateById(id:number){
+  return axios.get(`${GETSTATES}/${id}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function createState(category:InsertState,token:string){
+  return axios.post(GETSTATES,category,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function updateState(category: IState,token:string){
+  return axios.put(`${GETSTATES}/${category.id}`,category,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
+}
+
+export async function deleteState(id: number,token:string){
+  return axios.delete(`${DELETESTATE}${id}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+    throw new Error('Cant delete category')
+  });
 }
