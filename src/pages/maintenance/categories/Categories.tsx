@@ -85,12 +85,10 @@ const Categories = () => {
 
       {createModal &&  <Modal title='New category' setModal={changeCreateModal}>
       <CategoryForm addCategory={addCategory} closeModal={changeEditModal} />
-        {/*<BookForm closeModal={changeCreateModal} addBook={addBook} /> */}
       </Modal>}
 
       {editModal.modal &&   <Modal title={`Edit Category "${editModal.title}"`} setModal={changeEditModal}>
         <CategoryForm categoryId={editModal.bookId} updateCategory={updateCategory} closeModal={changeEditModal} />
-       {/* <BookForm bookId={editModal.bookId} updateBook={updateBook} closeModal={changeEditModal} /> */}
       </Modal>}
 
       {modal.modal &&  <Modal title={'Remove'} setModal={changeDeleteModal} removeError={changeFailedToDeleteModal} >

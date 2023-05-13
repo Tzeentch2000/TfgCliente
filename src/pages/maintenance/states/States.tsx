@@ -85,12 +85,10 @@ const States = () => {
 
       {createModal &&  <Modal title='New State' setModal={changeCreateModal}>
       <StateForm addState={addState} closeModal={changeEditModal} />
-        {/*<BookForm closeModal={changeCreateModal} addBook={addBook} /> */}
       </Modal>}
 
       {editModal.modal &&   <Modal title={`Edit State "${editModal.title}"`} setModal={changeEditModal}>
         <StateForm stateId={editModal.bookId} updateState={updateState} closeModal={changeEditModal} />
-       {/* <BookForm bookId={editModal.bookId} updateBook={updateBook} closeModal={changeEditModal} /> */}
       </Modal>}
 
       {modal.modal &&  <Modal title={'Remove'} setModal={changeDeleteModal} removeError={changeFailedToDeleteModal} >
