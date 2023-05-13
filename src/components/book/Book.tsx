@@ -13,7 +13,7 @@ const Book = (props:Props) => {
     const { id,name,description,author,price,image,categories,state,isActive } = book
   return (
     <div className={style.container}>
-      <div className={style.image}></div>
+      <div className={style.image} style={{ backgroundImage:`url(${image})`,backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center' }}></div>
       <div className={style.textContent}>
         <h3>{name}</h3>
         <p>{description}</p>

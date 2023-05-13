@@ -29,7 +29,7 @@ const States = () => {
 
   const updateState = (updateState:IState) => {
     const updatedStates = _states.map(c => {
-      if(c.id === updateState.id) return updateState
+      if(c.id === updateState.id) return {...updateState,date:c.date}
       return c
     })
     _setStates(updatedStates)
@@ -71,7 +71,7 @@ const States = () => {
     properties={['name','description']} 
     editAction={dispatchEditModal} 
     deleteAction={dispatchModal} /> :
-  <NoElements text='No books' />
+  <NoElements text='No states' />
 
   return (
     <>
@@ -84,7 +84,7 @@ const States = () => {
       </Container>
 
       {createModal &&  <Modal title='New State' setModal={changeCreateModal}>
-      <StateForm addState={addState} closeModal={changeEditModal} />
+      <StateForm addState={addState} closeModal={changeCreateModal} />
       </Modal>}
 
       {editModal.modal &&   <Modal title={`Edit State "${editModal.title}"`} setModal={changeEditModal}>

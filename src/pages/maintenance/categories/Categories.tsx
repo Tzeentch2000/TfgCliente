@@ -29,7 +29,7 @@ const Categories = () => {
 
   const updateCategory = (updatedCategory:ICategory) => {
     const updatedCategories = _categories.map(c => {
-      if(c.id === updatedCategory.id) return updatedCategory
+      if(c.id === updatedCategory.id) return {...updatedCategory,date:c.date}
       return c
     })
     _setCategories(updatedCategories)
@@ -71,7 +71,7 @@ const Categories = () => {
     properties={['name','description']} 
     editAction={dispatchEditModal} 
     deleteAction={dispatchModal} /> :
-  <NoElements text='No books' />
+  <NoElements text='No Categories' />
 
   return (
     <>
@@ -84,7 +84,7 @@ const Categories = () => {
       </Container>
 
       {createModal &&  <Modal title='New category' setModal={changeCreateModal}>
-      <CategoryForm addCategory={addCategory} closeModal={changeEditModal} />
+      <CategoryForm addCategory={addCategory} closeModal={changeCreateModal} />
       </Modal>}
 
       {editModal.modal &&   <Modal title={`Edit Category "${editModal.title}"`} setModal={changeEditModal}>

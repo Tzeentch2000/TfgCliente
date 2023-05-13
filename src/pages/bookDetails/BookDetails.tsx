@@ -30,7 +30,7 @@ const BookDetails = () => {
       {isInCart() !== undefined && <Alert type='success' message='El producto ha sido añadido al carrito' />}
       {cart.cart.length >= 10 && <Alert type='error' message='Maximum cart capacity reached' />}
       <h3 className={style.title}>{name} <span className={style.author}>{author}</span></h3>
-        <img src={require('../../assets/images/book.jpg')} className={style.image}></img>
+        <img src={`${image}`} className={style.image}></img>
         <p className={style.categories}>
           {categories.map(c => (<span key={c.id.toString()} className={style.category}>{c.name}</span>))}
           <span>{state.name}</span>

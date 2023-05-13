@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IBook, IBuyCart, ICategory, IOrderCart, IState, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
+import { IBook, IBuyCart, ICategory, ICategoryInitialData, IOrderCart, IState, IStateInitialData, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
 const SERVER = 'https://localhost:7224/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
@@ -178,7 +178,7 @@ export async function createCategory(category:InsertCategory,token:string){
   });
 }
 
-export async function updateCategory(category: ICategory,token:string){
+export async function updateCategory(category: ICategoryInitialData,token:string){
   return axios.put(`${GETCATEGORIES}/${category.id}`,category,config(token))
   .then(response => response.data)
   .catch(function (error) {
@@ -213,7 +213,7 @@ export async function createState(category:InsertState,token:string){
   });
 }
 
-export async function updateState(category: IState,token:string){
+export async function updateState(category: IStateInitialData,token:string){
   return axios.put(`${GETSTATES}/${category.id}`,category,config(token))
   .then(response => response.data)
   .catch(function (error) {

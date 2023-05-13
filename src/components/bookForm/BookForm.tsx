@@ -70,6 +70,7 @@ const BookForm = (props:Props) => {
 
     const onChangeState = (e: any) => {
         const newState = states.filter(s => s.id == e.target.value)
+        console.log(newState)
         setBook({...book,state:newState[0]})
     }
 
@@ -89,15 +90,20 @@ const BookForm = (props:Props) => {
             return 
         }
 
+        if(!validatePrice(book.price.toString())){
+            setError('Invalid price')
+            return
+        }
+
         const saveCategories:bookMaintenanceCategory[] = checkedState.filter(c => c.isIn)
         if(saveCategories.length <= 0){
             setError('Book always have at least one category')
             return 
         }
 
-        if(!validatePrice(book.price.toString())){
-            setError('Invalid price')
-            return
+        if(book.state.id === undefined || book.state.id === null || book.state.id === null){
+            setError('You must select a state')
+            return 
         }
 
         setError('')
@@ -154,7 +160,8 @@ const BookForm = (props:Props) => {
         </div>
         <div className={style.bloque}>    
         <label htmlFor='state'>State:</label>      
-            <select name='state' value={book?.state?.id} onChange={onChangeState}>
+            <select name='state' value={book?.state.id} onChange={onChangeState}>
+            <option value=''>Select a state</option>
                 {states.map(s => (
                     <option key={s.id} value={s.id}>{s.name}</option>
                 ))}

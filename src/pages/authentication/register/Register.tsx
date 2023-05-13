@@ -29,6 +29,11 @@ const Register = () => {
         </div>
 
         <div className={style.bloque}>          
+          <label htmlFor='direction'>Direction:</label>
+          <input type="text" placeholder='Direction' name='direction' id='emdirectionail' />
+        </div>
+
+        <div className={style.bloque}>          
           <label htmlFor='phone'>Phone:</label>
           <input type="text" placeholder='Phone' name='phone' id='phone' maxLength={9}/>
         </div>
@@ -56,7 +61,7 @@ export async function action({request}: any){
   const formData = await request.formData()
   const datos = Object.fromEntries(formData)
   let error = ''
-  const { name,surname,email,phone,password,password2 } = datos
+  const { name,surname,email,direction,phone,password,password2 } = datos
 
   if(Object.values(datos).includes('')){
     error = 'All fields are required'
@@ -73,7 +78,7 @@ export async function action({request}: any){
     return error
   }
   //LE HE PUESTO EL AWAIT, SI FUNCIONA MAL ESTA PARTE TENGO QUE QUITAR EL AWAIT
-  await register({email,password,name,surname,phone})
+  await register({email,password,name,surname,phone,direction})
 
   return redirect('/authentication')
 }

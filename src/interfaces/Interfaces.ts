@@ -9,14 +9,18 @@ export interface IState{
     id:number,
     name:string,
     description:string,
-    isActive:boolean
+    isActive:boolean,
+    colorCode:string,
+    date:Date
 }
 
 export interface ICategory{
     id:number,
     name:string,
     description:string,
-    isActive:boolean
+    isActive:boolean,
+    colorCode:string,
+    date:Date
 }
 
 export interface IBook{
@@ -68,6 +72,7 @@ export interface IUser{
     password:string,
     phone:number,
     isAdmin:boolean,
+    direction:string
     orders:IOrders
 }
 
@@ -120,4 +125,20 @@ export interface InsertState{
     description:string,
     isActive:boolean
     //Color
+}
+
+export interface IStateInitialData{
+    id:number,
+    name:string,
+    description:string,
+    isActive:boolean,
+    colorCode:string,
+}
+
+export interface ICategoryInitialData{
+    id:number,
+    name:string,
+    description:string,
+    isActive:boolean,
+    colorCode:string,
 }

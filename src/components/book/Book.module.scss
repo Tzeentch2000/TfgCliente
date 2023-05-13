@@ -3,11 +3,11 @@
 .container{
     margin: auto;
     border-radius: 10px;
-    width: 15.6rem;
+    width: 13.6rem;
     background-color: $primary-color;
     color: $grey;
     text-align: center;
-    border: 8px solid $primary-color;
+    padding: .5rem;
     filter: brightness(.9);
     transition-property: all;
     transition-duration: .5s;
@@ -21,12 +21,8 @@
     }
     
     .image{
+        padding: .5rem;
         height: 15rem;
-        background-image: url('../../assets/images/book.jpg');
-        background-repeat: no-repeat;
-        //background-size: cover;
-        background-size: 100%;
-        background-position: center;
 
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;

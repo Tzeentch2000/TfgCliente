@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import style from '../UI/formStyle/FormStyle.module.scss'
-import { IState, InsertState } from '../../interfaces/Interfaces'
+import { IState, IStateInitialData, InsertState } from '../../interfaces/Interfaces'
 import { createState, getStateById, updateState } from '../../assets/functions/api'
 import Alert from '../UI/Alert/Alert'
 import { getCookie } from '../../assets/functions/cookie'
@@ -12,17 +12,18 @@ interface Props {
     closeModal:(modal:boolean) => void
 }
 
-const initialData:IState = {
+const initialData:IStateInitialData = {
     id:0,
     name:'',
     description:'',
-    isActive:false
+    isActive:false,
+    colorCode:'#000000'
     //date and color
 }
 
 const StateForm = (props:Props) => {
 
-    const [ state, setState ] = useState<IState>(initialData)
+    const [ state, setState ] = useState<IStateInitialData>(initialData)
     const [ loading, setLoading ] = useState(true)
     const [ error, setError ] = useState('')
 
@@ -39,6 +40,10 @@ const StateForm = (props:Props) => {
 
     const onInputChange = (e: any) => {
         setState({...state, [e.target.name]:e.target.value})
+    }
+
+    const onHandleChangeColor = (e: any) => {
+        setState({...state,colorCode:e.target.value})
     }
 
     const onHandleChangeIsActive = () => {
@@ -62,7 +67,7 @@ const StateForm = (props:Props) => {
             if(props.addState) props.addState(newState)
         } else {
             await updateState(state,token)
-            if(props.updateState) props.updateState(state)
+            if(props.updateState) props.updateState(state as IState)
         }
         props.closeModal(false)
     }
@@ -76,7 +81,7 @@ const StateForm = (props:Props) => {
         </div>
         <div className={style.bloque}>          
           <label htmlFor='color'>Color:</label>
-          <input type="color" name='color' id='color' defaultValue={''} />
+          <input type="color" name='color' id='color' defaultValue={state.colorCode} onChange={onHandleChangeColor} />
         </div>
         <div className={style.bloque}>      
             <label htmlFor='description'>Description:</label>    

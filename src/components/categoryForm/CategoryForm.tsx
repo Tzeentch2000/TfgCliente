@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import style from '../UI/formStyle/FormStyle.module.scss'
-import { ICategory, InsertCategory } from '../../interfaces/Interfaces'
+import { ICategory, ICategoryInitialData, InsertCategory } from '../../interfaces/Interfaces'
 import { createCategory, getCategoryById, updateCategory } from '../../assets/functions/api'
 import Alert from '../UI/Alert/Alert'
 import { getCookie } from '../../assets/functions/cookie'
@@ -12,17 +12,17 @@ interface Props {
     closeModal:(modal:boolean) => void
 }
 
-const initialData:ICategory = {
+const initialData:ICategoryInitialData = {
     id:0,
     name:'',
     description:'',
-    isActive:false
-    //date and color
+    isActive:false,
+    colorCode:'#000000'
 }
 
 const CategoryForm = (props:Props) => {
 
-    const [ category, setCategory ] = useState<ICategory>(initialData)
+    const [ category, setCategory ] = useState<ICategoryInitialData>(initialData)
     const [ loading, setLoading ] = useState(true)
     const [ error, setError ] = useState('')
 
@@ -39,6 +39,10 @@ const CategoryForm = (props:Props) => {
 
     const onInputChange = (e: any) => {
         setCategory({...category, [e.target.name]:e.target.value})
+    }
+
+    const onHandleChangeColor = (e: any) => {
+        setCategory({...category,colorCode:e.target.value})
     }
 
     const onHandleChangeIsActive = () => {
@@ -62,7 +66,7 @@ const CategoryForm = (props:Props) => {
             if(props.addCategory) props.addCategory(newCategory)
         } else {
             await updateCategory(category,token)
-            if(props.updateCategory) props.updateCategory(category)
+            if(props.updateCategory) props.updateCategory(category as ICategory)
         }
         props.closeModal(false)
     }
@@ -76,7 +80,7 @@ const CategoryForm = (props:Props) => {
         </div>
         <div className={style.bloque}>          
           <label htmlFor='color'>Color:</label>
-          <input type="color" name='color' id='color' defaultValue={''} />
+          <input type="color" name='color' id='color' defaultValue={category.colorCode} onChange={onHandleChangeColor} />
         </div>
         <div className={style.bloque}>      
             <label htmlFor='description'>Description:</label>    
