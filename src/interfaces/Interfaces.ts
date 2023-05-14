@@ -142,3 +142,29 @@ export interface ICategoryInitialData{
     isActive:boolean,
     colorCode:string,
 }
+
+export interface IDataSets{
+    label: string,
+    data: number[],
+    borderColor: string,
+    backgroundColor: string
+}
+
+export interface IChartOptions{
+    responsive: boolean,
+    plugins: {
+        legend: {
+        position: "top" | "left" | "center" | "right" | "bottom",
+        },
+        title: {
+        display: boolean,
+        text: string,
+        },
+    },
+}
+
+export interface IChartData{
+    labels:string[],
+    datasets: IDataSets[]
+}
+

@@ -15,6 +15,7 @@ const BUY = `${SERVER}Order`
 const DELETEBOOK =`${SERVER}Book/`
 const DELETECATEGORY = `${SERVER}Category/`
 const DELETESTATE = `${SERVER}State/`
+const GETORDERS = `${SERVER}Order`
 
 const config = (token:string) => {
   return {
@@ -227,5 +228,14 @@ export async function deleteState(id: number,token:string){
   .then(response => response.data)
   .catch(function (error) {
     throw new Error('Cant delete category')
+  });
+}
+
+export async function getOrders(token:string){
+  return axios.get(`${GETORDERS}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
   });
 }

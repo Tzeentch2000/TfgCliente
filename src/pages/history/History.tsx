@@ -26,20 +26,9 @@ const History = () => {
     formatOrders(orders)
   },[orders])
 
-  const edit = (id:string) => {
-    console.log(`EDIT ${id}`)
-  }
-
   const table = orders.length > 0 ? 
                 <Table th={['Book','Amount','Date','Price']} td={stateOrders} properties={['bookName','amount','date','price']} /> :
                 <NoElements text='You dont have any orders' />
-
-/*
-editAction={{modalTitle:'Editar history',modalContent:(<p>Esto es el contenido del modal</p>)}} 
-deleteAction={(id:string) => {
-console.log(`DELETE ${id}`)
-}}
-*/
 
   return (
     <Container>

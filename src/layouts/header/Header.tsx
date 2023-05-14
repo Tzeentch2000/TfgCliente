@@ -67,6 +67,9 @@ const Header = () => {
                 <NavLink to='States' className={({ isActive }) =>isActive ? style.active : ''}>States</NavLink>
               </li>
               <li>
+                <NavLink to='Charts' className={({ isActive }) =>isActive ? style.active : ''}>Charts</NavLink>
+              </li>
+              <li>
                 <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>Orders</NavLink>
               </li>
               <li>

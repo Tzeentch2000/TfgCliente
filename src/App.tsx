@@ -16,6 +16,9 @@ import Cart from './pages/cart/Cart';
 import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
 import { CartProvider } from './context/CartProvider';
 import {action as shopAction} from './components/direction/Direction';
+import Chart from './layouts/chart/Chart';
+import LineChart, {loader as ordersLoader} from './pages/chart/line/LineChart';
+import RadioChart from './pages/chart/radio/RadioChart';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +30,12 @@ function App() {
         { path:'books', element: <Books />, loader: booksLoader },
         { path:'categories', element: <Categories />, loader: categoriesLoader },
         { path:'states', element: <States />, loader: statesLoader },
+        { path: 'charts',
+           element: <Chart />,
+           children:[
+            { index:true, element: <LineChart />, loader: ordersLoader,},
+            { path:'radio', element: <RadioChart />},
+           ]},
         { path:'history', element: <History />, loader: historyLoader },
         { path:'cart', element: <Cart />, action: shopAction },
         { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },
