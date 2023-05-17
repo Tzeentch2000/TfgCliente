@@ -3,7 +3,7 @@ import style from '../Maintenance.module.scss'
 import Container from '../../../components/UI/container/Container'
 import PageTitle from '../../../components/UI/pageTitle/PageTitle'
 import { deleteState, getStates } from '../../../assets/functions/api'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigation } from 'react-router-dom'
 import { IState } from '../../../interfaces/Interfaces'
 import Table from '../../../components/UI/Table/Table'
 import NoElements from '../../../components/UI/noElements/NoElements'
@@ -12,8 +12,10 @@ import Confirm from '../../../components/confirm/Confirm'
 import { ModalReducer } from '../../../components/confirm/reducer/ModalReducer'
 import { getCookie } from '../../../assets/functions/cookie'
 import StateForm from '../../../components/stateForm/StateForm'
+import Spinner from '../../../components/UI/spinner/Spinner'
 
 const States = () => {
+  const navigation = useNavigation()
   const states = useLoaderData() as IState[]
   const [ _states,_setStates ] = useState(states)
   const [ createModal,setCreateModal ] = useState(false)
@@ -73,7 +75,7 @@ const States = () => {
     deleteAction={dispatchModal} /> :
   <NoElements text='No states' />
 
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <>
       <Container>
         <div className={style.header}>
@@ -102,11 +104,8 @@ const States = () => {
 export default States
 
 export async function loader(){
-  try{
     const states = await getStates()
+    if(states === null) throw { message: 'Could not fetch events' }
     return states
-  }catch(e){
-    throw new Response(`Error: ${e}`, { status: 500 });
-  }
 }
 

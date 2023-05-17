@@ -19,6 +19,7 @@ import {action as shopAction} from './components/direction/Direction';
 import Chart from './layouts/chart/Chart';
 import LineChart, {loader as ordersLoader} from './pages/chart/line/LineChart';
 import RadioChart from './pages/chart/radio/RadioChart';
+import Error from './pages/error/Error';
 
 function App() {
   const router = createBrowserRouter([
@@ -26,19 +27,19 @@ function App() {
       path: '/',
       element: <Header />,
       children: [
-        { index:true, element: <Home /> , loader: homeLoader},
-        { path:'books', element: <Books />, loader: booksLoader },
-        { path:'categories', element: <Categories />, loader: categoriesLoader },
-        { path:'states', element: <States />, loader: statesLoader },
+        { index:true, element: <Home /> , loader: homeLoader, errorElement: <Error />},
+        { path:'books', element: <Books />, loader: booksLoader, errorElement: <Error /> },
+        { path:'categories', element: <Categories />, loader: categoriesLoader, errorElement: <Error /> },
+        { path:'states', element: <States />, loader: statesLoader, errorElement: <Error /> },
         { path: 'charts',
            element: <Chart />,
            children:[
-            { index:true, element: <LineChart />, loader: ordersLoader,},
-            { path:'radio', element: <RadioChart />},
+            { index:true, element: <LineChart />, loader: ordersLoader, errorElement: <Error />},
+            { path:'radio', element: <RadioChart />, errorElement: <Error />},
            ]},
-        { path:'history', element: <History />, loader: historyLoader },
-        { path:'cart', element: <Cart />, action: shopAction },
-        { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader },
+        { path:'history', element: <History />, loader: historyLoader, errorElement: <Error /> },
+        { path:'cart', element: <Cart />, action: shopAction, errorElement: <Error /> },
+        { path:'book/:bookId', element: <BookDetails />, loader: bookDetailLoader, errorElement: <Error /> },
       ]
     },
     {
@@ -46,8 +47,8 @@ function App() {
       element: <Auth />,
       action:actionLogin,
       children: [
-        { index:true, element: <Login /> },
-        { path:'register', element: <Register />, action:actionRegister }
+        { index:true, element: <Login />, errorElement: <Error /> },
+        { path:'register', element: <Register />, action:actionRegister, errorElement: <Error /> }
       ]
     },
   ])

@@ -3,13 +3,15 @@ import style from './LineChart.module.scss'
 import { LineChartComponent } from '../../../components/UI/chart/line/LineChartComponent'
 import { getOrders } from '../../../assets/functions/api';
 import { IDataSets, IOrders } from '../../../interfaces/Interfaces';
-import { useActionData, useLoaderData } from 'react-router-dom';
+import { useActionData, useLoaderData, useNavigation } from 'react-router-dom';
 import { getCookie } from '../../../assets/functions/cookie';
 import Alert from '../../../components/UI/Alert/Alert';
 import { chartDefaultOptions, colors, filterByYears, months } from '../../../assets/functions/data';
 import Filter from '../../../components/UI/Filter/Filter';
+import Spinner from '../../../components/UI/spinner/Spinner';
 
 const LineChart = () => {
+  const navigation = useNavigation()
   const orders = useLoaderData() as IOrders[]
   const error: any = useActionData()
   const [ years,setYears ] = useState<number[]>([])
@@ -78,7 +80,7 @@ const LineChart = () => {
     setYearsLength(Number(e.target.value))
   }
   
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <div>
       {showError}
       <select onChange={onHandleChange} className={style.select}>
@@ -100,6 +102,7 @@ export async function loader(){
       return error
     }
     const orders = await getOrders(token)
+    if(orders === null) throw { message: 'Could not fetch events' }
     if(Object.values(orders).length === 0){
         throw new Response('',{
             status: 404,

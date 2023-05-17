@@ -3,7 +3,7 @@ import style from '../Maintenance.module.scss'
 import Container from '../../../components/UI/container/Container'
 import PageTitle from '../../../components/UI/pageTitle/PageTitle'
 import { deleteBook, getBooks } from '../../../assets/functions/api'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigation } from 'react-router-dom'
 import { IBook } from '../../../interfaces/Interfaces'
 import Table from '../../../components/UI/Table/Table'
 import NoElements from '../../../components/UI/noElements/NoElements'
@@ -12,8 +12,10 @@ import Confirm from '../../../components/confirm/Confirm'
 import { ModalReducer } from '../../../components/confirm/reducer/ModalReducer'
 import { getCookie } from '../../../assets/functions/cookie'
 import BookForm from '../../../components/bookForm/BookForm'
+import Spinner from '../../../components/UI/spinner/Spinner'
 
 const Books = () => {
+  const navigation = useNavigation()
   const books = useLoaderData() as IBook[]
   const [ _books,_setBooks ] = useState(books)
   const [ createModal,setCreateModal ] = useState(false)
@@ -74,7 +76,7 @@ const Books = () => {
     deleteAction={dispatchModal} /> :
   <NoElements text='No books' />
 
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <>
       <Container>
         <div className={style.header}>
@@ -103,10 +105,7 @@ const Books = () => {
 export default Books
 
 export async function loader(){
-  try{
     const books = await getBooks()
+    if(books === null) throw { message: 'Could not fetch events' }
     return books
-  }catch(e){
-    throw new Response(`Error: ${e}`, { status: 500 });
-  }
 }

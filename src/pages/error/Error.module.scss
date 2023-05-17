@@ -1,0 +1,9 @@
+@import '../../assets/var/var.scss';
+
+.error{
+    background-color: $crossRed;
+    color: $secondary-color;
+    width: fit-content;
+    padding: .5rem;
+    margin: auto;
+}

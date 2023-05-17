@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import style from './BookDetails.module.scss'
 import { getBookById } from '../../assets/functions/api'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigation } from 'react-router-dom'
 import { IBook } from '../../interfaces/Interfaces'
 import Modal from '../../components/UI/modal/Modal'
 import AmountForm from '../../components/amountForm/AmountForm'
 import Alert from '../../components/UI/Alert/Alert'
 import useCart from '../../hooks/useCart'
+import Spinner from '../../components/UI/spinner/Spinner'
 
 const BookDetails = () => {
+    const navigation = useNavigation()
     const book = useLoaderData() as IBook
     const cart = useCart()
     const [ modal,setModal ] = useState(false)
@@ -25,7 +27,7 @@ const BookDetails = () => {
     let showAddToCartButton = true
     if(isInCart !== undefined || cart.cart.length >= 10) showAddToCartButton = false
 
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <div className={style.container}>
       {isInCart() !== undefined && <Alert type='success' message='El producto ha sido añadido al carrito' />}
       {cart.cart.length >= 10 && <Alert type='error' message='Maximum cart capacity reached' />}
@@ -46,6 +48,7 @@ export default BookDetails
 
 export async function loader({params} : any){
     const book = await getBookById(params.bookId)
+    if(book === null) throw { message: 'Could not fetch events' }
     if(Object.values(book).length === 0){
         throw new Response('',{
             status: 404,

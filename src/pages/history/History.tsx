@@ -5,12 +5,14 @@ import { IFormatedOrders, IOrders } from '../../interfaces/Interfaces'
 import { getCookie } from '../../assets/functions/cookie'
 import { validateToken } from '../../assets/functions/validation'
 import { getOrderByUserId } from '../../assets/functions/api'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigation } from 'react-router-dom'
 import Container from '../../components/UI/container/Container'
 import PageTitle from '../../components/UI/pageTitle/PageTitle'
 import NoElements from '../../components/UI/noElements/NoElements'
+import Spinner from '../../components/UI/spinner/Spinner'
 
 const History = () => {
+  const navigation = useNavigation()
   const orders = useLoaderData() as IOrders[]
   const [ stateOrders,setStateOrders ] = useState<IFormatedOrders[]>([])
 
@@ -30,7 +32,7 @@ const History = () => {
                 <Table th={['Book','Amount','Date','Price']} td={stateOrders} properties={['bookName','amount','date','price']} /> :
                 <NoElements text='You dont have any orders' />
 
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <Container>
       <PageTitle title='Orders History' />
       {table}
@@ -43,5 +45,6 @@ export default History
 export async function loader(){
   const _token = await getCookie('token')
   const _orders:IOrders[] = await getOrderByUserId(validateToken(_token).id,_token)
+  if(_orders === null) throw { message: 'Could not fetch events' }
   return _orders
 }

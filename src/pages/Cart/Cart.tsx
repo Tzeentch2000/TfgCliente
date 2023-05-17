@@ -10,9 +10,11 @@ import NoElements from '../../components/UI/noElements/NoElements'
 import PageTitle from '../../components/UI/pageTitle/PageTitle'
 import { setCookie } from '../../assets/functions/cookie'
 import Direction from '../../components/direction/Direction'
+import { useNavigation } from 'react-router-dom'
+import Spinner from '../../components/UI/spinner/Spinner'
 
 const Cart = () => {
-
+  const navigation = useNavigation()
   const cart = useCart()
   const [ modal,dispatchModal ] = useReducer(ModalReducer,{modal:false,title:'',bookId:0})
   const [ buy,setBuy] = useState(false)
@@ -94,7 +96,7 @@ const Cart = () => {
     </tbody>
     </table>) : (<NoElements text='There is nothing in the shopping cart' />)
 
-  return (
+  return ( navigation.state === 'loading' ? <Spinner /> :
     <>
       <Container>
         <PageTitle title='Cart' />
