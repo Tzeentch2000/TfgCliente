@@ -10,6 +10,8 @@ import { IUser } from '../../interfaces/Interfaces'
 import useCart from '../../hooks/useCart'
 import { IOrderCart } from '../../interfaces/Interfaces'
 import Footer from '../footer/Footer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const navigate = useNavigate()
@@ -67,7 +69,7 @@ const Header = () => {
                 <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>Orders</NavLink>
               </li>
               <li>
-                <NavLink to='Cart' className={({ isActive }) =>isActive ? style.active : ''}>Cart{cartCount}</NavLink>
+                <NavLink to='Cart' className={({ isActive }) =>isActive ? style.active : ''}>Cart <FontAwesomeIcon icon={faCartShopping} />{cartCount}</NavLink>
               </li>
               <li>
                 <a onClick={handleClickCloseSession}>Close session</a>

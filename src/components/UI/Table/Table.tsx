@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import style from './Table.module.scss'
 import Modal from '../modal/Modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 type ModalActions = 
     | { type: 'changeModal', playload: boolean}
@@ -55,8 +57,8 @@ const Table = (props:Props) => {
             <td key={index}>{_td[p]}</td>
           ))}
           {(editAction || deleteAction) && (<td className={style.containerButton}>
-            {editAction && (<button className={style.editButton} onClick={() => handleClickEdit(_td['id'],_td['name'])}>Edit</button>)}
-            {deleteAction && (<button className={style.deleteButton} onClick={() => handleClickDelete(_td['id'],_td['name'])}>Delete</button>)}
+            {editAction && (<button className={style.editButton} onClick={() => handleClickEdit(_td['id'],_td['name'])}><FontAwesomeIcon icon={faPenToSquare} /></button>)}
+            {deleteAction && (<button className={style.deleteButton} onClick={() => handleClickDelete(_td['id'],_td['name'])}><FontAwesomeIcon icon={faTrash} /></button>)}
           </td>)}
         </tr>
       ))}

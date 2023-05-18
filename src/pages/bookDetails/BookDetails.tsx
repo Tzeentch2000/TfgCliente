@@ -8,6 +8,8 @@ import AmountForm from '../../components/amountForm/AmountForm'
 import Alert from '../../components/UI/Alert/Alert'
 import useCart from '../../hooks/useCart'
 import Spinner from '../../components/UI/spinner/Spinner'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 const BookDetails = () => {
     const navigation = useNavigation()
@@ -38,7 +40,7 @@ const BookDetails = () => {
           <span>{state.name}</span>
         </p>
         <p className={style.description}>{description}</p>
-      {isInCart() === undefined && <button onClick={handleClick}>Add to cart - {price.toString()}$</button>}
+      {isInCart() === undefined && <button onClick={handleClick}><FontAwesomeIcon icon={faCartPlus} beat />{'  '}{price.toString()}$</button>}
       {modal && <Modal title={`Comprar "${name}"`} setModal={handleClick} editId={id.toString()}><AmountForm book={book} handleCloseModal={handleClick} /></Modal>}
     </div>
   )
