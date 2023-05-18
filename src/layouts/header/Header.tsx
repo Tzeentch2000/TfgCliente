@@ -58,13 +58,7 @@ const Header = () => {
                 <NavLink to='/' className={({ isActive }) =>isActive ? style.active : ''} end>Home</NavLink>
               </li>
               <li>
-                <NavLink to='Books' className={({ isActive }) =>isActive ? style.active : ''}>Books</NavLink>
-              </li>
-              <li>
-                <NavLink to='Categories' className={({ isActive }) =>isActive ? style.active : ''}>Categories</NavLink>
-              </li>
-              <li>
-                <NavLink to='States' className={({ isActive }) =>isActive ? style.active : ''}>States</NavLink>
+                <NavLink to='backoffice' className={({ isActive }) =>isActive ? style.active : ''}>BackOffice</NavLink>
               </li>
               <li>
                 <NavLink to='Charts' className={({ isActive }) =>isActive ? style.active : ''}>Charts</NavLink>

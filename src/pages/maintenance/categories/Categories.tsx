@@ -79,7 +79,6 @@ const Categories = () => {
     <>
       <Container>
         <div className={style.header}>
-          <PageTitle title='Categories backoffice' />
           <button onClick={() => changeCreateModal(true)}>New Category</button>
         </div>
         {table}

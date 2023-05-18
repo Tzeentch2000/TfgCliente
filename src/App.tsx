@@ -20,6 +20,7 @@ import Chart from './layouts/chart/Chart';
 import LineChart, {loader as ordersLoader} from './pages/chart/line/LineChart';
 import RadioChart from './pages/chart/radio/RadioChart';
 import Error from './pages/error/Error';
+import Backoffice from './layouts/backoffice/Backoffice';
 
 function App() {
   const router = createBrowserRouter([
@@ -28,9 +29,14 @@ function App() {
       element: <Header />,
       children: [
         { index:true, element: <Home /> , loader: homeLoader, errorElement: <Error />},
-        { path:'books', element: <Books />, loader: booksLoader, errorElement: <Error /> },
-        { path:'categories', element: <Categories />, loader: categoriesLoader, errorElement: <Error /> },
-        { path:'states', element: <States />, loader: statesLoader, errorElement: <Error /> },
+        { path: 'backoffice',
+          element: <Backoffice />,
+          children:[
+            { index:true,  element: <Books />, loader: booksLoader, errorElement: <Error /> },
+            { path:'categories', element: <Categories />, loader: categoriesLoader, errorElement: <Error /> },
+            { path:'states', element: <States />, loader: statesLoader, errorElement: <Error /> },
+          ]
+        },
         { path: 'charts',
            element: <Chart />,
            children:[

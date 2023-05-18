@@ -79,7 +79,6 @@ const States = () => {
     <>
       <Container>
         <div className={style.header}>
-          <PageTitle title='State backoffice' />
           <button onClick={() => changeCreateModal(true)}>New State</button>
         </div>
         {table}

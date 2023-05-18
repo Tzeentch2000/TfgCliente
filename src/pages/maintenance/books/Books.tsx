@@ -80,7 +80,6 @@ const Books = () => {
     <>
       <Container>
         <div className={style.header}>
-          <PageTitle title='Books backoffice' />
           <button onClick={() => changeCreateModal(true)}>New Book</button>
         </div>
         {table}
