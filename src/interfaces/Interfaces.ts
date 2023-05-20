@@ -76,6 +76,18 @@ export interface IUser{
     orders:IOrders
 }
 
+export interface IUserWithoutOrders{
+    id:number,
+    email:string,
+    name:string,
+    surname:string,
+    password:string,
+    phone:number,
+    isAdmin:boolean,
+    direction:string
+}
+
+
 export interface IHomeLoaderData{
     books:IBook[],
     categories:ICategory[],
@@ -147,7 +159,8 @@ export interface IDataSets{
     label: string,
     data: number[],
     borderColor: string,
-    backgroundColor: string
+    backgroundColor: string,
+    borderWidth?:number
 }
 
 export interface IChartOptions{
@@ -167,4 +180,24 @@ export interface IChartData{
     labels:string[],
     datasets: IDataSets[]
 }
+
+export interface IOrderByCategory{
+    name:string[],
+    total:number[]
+    colorCode:string[]
+}
+
+export interface IRadioDataSet{
+    label?: string
+    data: number[],
+    backgroundColor: string[],
+    borderColor: string[],
+    borderWidth: number,
+}
+
+export interface IRadioChartData{
+    labels: string[],
+    datasets: IRadioDataSet[]
+}
+
 

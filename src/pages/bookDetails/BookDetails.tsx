@@ -27,16 +27,16 @@ const BookDetails = () => {
     }
 
     let showAddToCartButton = true
-    if(isInCart !== undefined || cart.cart.length >= 10) showAddToCartButton = false
+    if(isInCart !== undefined || cart.cart.length >= 4) showAddToCartButton = false
 
   return ( navigation.state === 'loading' ? <Spinner /> :
     <div className={style.container}>
       {isInCart() !== undefined && <Alert type='success' message='El producto ha sido añadido al carrito' />}
-      {cart.cart.length >= 10 && <Alert type='error' message='Maximum cart capacity reached' />}
+      {cart.cart.length >= 4 && <Alert type='error' message='Maximum cart capacity reached' />}
       <h3 className={style.title}>{name} <span className={style.author}>{author}</span></h3>
-        <img src={`${image}`} className={style.image}></img>
+        <img src={`${image}`} className={style.image} alt={`${name}`}></img>
         <p className={style.categories}>
-          {categories.map(c => (<span key={c.id.toString()} className={style.category}>{c.name}</span>))}
+          {categories.map(c => (<span key={c.id.toString()} style={{borderColor:`${c.colorCode}`, color:`${c.colorCode}`}} className={style.category}>{c.name}</span>))}
           <span>{state.name}</span>
         </p>
         <p className={style.description}>{description}</p>

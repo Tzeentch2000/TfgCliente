@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IBook, IBuyCart, ICategory, ICategoryInitialData, IOrderCart, IState, IStateInitialData, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
+import { IBook, IBuyCart, ICategory, ICategoryInitialData, IOrderCart, IState, IStateInitialData, IUser, IUserWithoutOrders, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
 const SERVER = 'https://localhost:7224/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
@@ -238,4 +238,32 @@ export async function getOrders(token:string){
       console.log(error);
       return null;
   });
+}
+//orderBy=date&orderType=descending
+export async function getOrdersByCategory(id:number,token:string){
+  return axios.get(`${GETORDERS}?categoryId=${id}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function getOrderByUserIdOrderBy(url:string,id:number,token:string){
+  return axios.get(`${GETORDERSBYUSERID}${id}${url}`,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
+}
+
+export async function updateUser(user: IUserWithoutOrders,token:string){
+  console.log(user)
+  return axios.put(`https://localhost:7224/User/${user.id}`,user,config(token))
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return -1;
+    });
 }

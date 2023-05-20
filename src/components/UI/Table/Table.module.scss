@@ -1,16 +1,18 @@
 @import '../../../assets/var/var.scss';
 
+.container{
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  margin-bottom: 5rem;
+}
+
 table{
-    width: 100%;
-    background-color: transparent;
-    border-collapse: collapse;
-    border-width: 2px;
-    border-color: $primary-color;
-    border-style: solid;
-    color: $primary-color;
-    background-color: $secondary-color;
-    font-size: 1.2rem;
-    margin-bottom: 5rem;
+  width: 100%;
+  border-collapse: collapse;
+  color: $primary-color;
+  background-color: $secondary-color;
+  font-size: 1.2rem;
   
   td,th {
     border-width: 2px;

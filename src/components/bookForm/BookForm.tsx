@@ -70,7 +70,6 @@ const BookForm = (props:Props) => {
 
     const onChangeState = (e: any) => {
         const newState = states.filter(s => s.id == e.target.value)
-        console.log(newState)
         setBook({...book,state:newState[0]})
     }
 

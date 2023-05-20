@@ -18,7 +18,7 @@ import { CartProvider } from './context/CartProvider';
 import {action as shopAction} from './components/direction/Direction';
 import Chart from './layouts/chart/Chart';
 import LineChart, {loader as ordersLoader} from './pages/chart/line/LineChart';
-import RadioChart from './pages/chart/radio/RadioChart';
+import RadioChart, {loader as radioLoader} from './pages/chart/radio/RadioChart';
 import Error from './pages/error/Error';
 import Backoffice from './layouts/backoffice/Backoffice';
 
@@ -41,7 +41,7 @@ function App() {
            element: <Chart />,
            children:[
             { index:true, element: <LineChart />, loader: ordersLoader, errorElement: <Error />},
-            { path:'radio', element: <RadioChart />, errorElement: <Error />},
+            { path:'radio', element: <RadioChart />, loader: radioLoader, errorElement: <Error />},
            ]},
         { path:'history', element: <History />, loader: historyLoader, errorElement: <Error /> },
         { path:'cart', element: <Cart />, action: shopAction, errorElement: <Error /> },

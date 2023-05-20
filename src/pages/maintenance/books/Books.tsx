@@ -30,7 +30,6 @@ const Books = () => {
   }
 
   const updateBook = (updBook:IBook) => {
-    console.log(updBook)
     const updatedBooks = _books.map(b => {
       if(b.id === updBook.id) return updBook
       return b
@@ -105,6 +104,6 @@ export default Books
 
 export async function loader(){
     const books = await getBooks()
-    if(books === null) throw { message: 'Could not fetch events' }
+    if(books === null) throw { message: 'Could not fetch Book events' }
     return books
 }

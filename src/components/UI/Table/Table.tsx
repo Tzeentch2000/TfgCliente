@@ -20,7 +20,6 @@ type Props = {
 const Table = (props:Props) => {
 
   const handleClickEdit = (id:number,title:string) => {
-    console.log(id)
     if(editAction!==undefined){
       editAction({type:'changeId',playload:id})
       editAction({type:'changeModal',playload:true})
@@ -40,7 +39,7 @@ const Table = (props:Props) => {
   const actionsTh = (editAction || deleteAction) ? (<th>Actions</th>) : ''
 
   return (
-    <>
+    <div className={style.container}>
       <table className={style.table}>
       <thead>
         <tr>
@@ -64,7 +63,7 @@ const Table = (props:Props) => {
       ))}
       </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

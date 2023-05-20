@@ -19,10 +19,14 @@ const LineChart = () => {
   const [ dataSets, setDataSets ] = useState<IDataSets[]>([])
 
   useEffect(() => {
-    const _years = orders.map(o => Number(o.date.toString().substring(0, 4)))
+    let _years = orders.map(o => Number(o.date.toString().substring(0, 4)))
+    _years = _years.filter((year, index) => {
+      return _years.indexOf(year) === index;
+    });
     _years.sort((a, b) => {
       return a - b;
     });
+    console.log(_years)
     const highestYears = _years.slice(-yearsLength);
     setYears(highestYears)
     const formatDataChart = () => {
@@ -50,7 +54,6 @@ const LineChart = () => {
     const generateDataSets = () => {
       let dts:IDataSets[] = []
       for (let i = 0; i < yearsLength; i++) {
-        console.log(colors[colors.length-(i+1)])
         if(dt[i] !== undefined){
           dts.push( {
             label: `${highestYears[i]}`,

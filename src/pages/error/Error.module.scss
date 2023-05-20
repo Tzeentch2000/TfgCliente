@@ -1,8 +1,19 @@
 @import '../../assets/var/var.scss';
 
 .error{
-    background-color: $crossRed;
-    color: $secondary-color;
+    .title{
+        background-color: $crossRed;
+        color: $secondary-color;
+        padding: .5rem;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .image{
+        display: block;
+        width: 70%;
+        margin: auto;
+    }
     width: fit-content;
     padding: .5rem;
     margin: auto;

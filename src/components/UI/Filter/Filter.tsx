@@ -3,8 +3,8 @@ import style from './Filter.module.scss'
 import { ICategory, IState } from '../../../interfaces/Interfaces'
 
 type Props = {
-    items : (ICategory | IState)[]
-    handleChange: (value:string) => void
+    items : (ICategory | IState )[]
+    handleChange: (value:string) => Promise<void>
 }
 
 const Filter = (props:Props) => {

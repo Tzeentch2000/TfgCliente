@@ -16,8 +16,9 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 const Header = () => {
   const navigate = useNavigate()
   const cart = useCart()
-  const {user,setUser} = useAuth();
+  const {user,setUser} = useAuth()
 
+  const __token = getCookie('token')  
     useEffect(() => {
       try{
         if(getCookie('token') === null){
@@ -59,12 +60,12 @@ const Header = () => {
               <li className={style.active}>
                 <NavLink to='/' className={({ isActive }) =>isActive ? style.active : ''} end>Home</NavLink>
               </li>
-              <li>
+              {validateToken(__token).userRole == 'True' && (<><li>
                 <NavLink to='backoffice' className={({ isActive }) =>isActive ? style.active : ''}>BackOffice</NavLink>
               </li>
               <li>
                 <NavLink to='Charts' className={({ isActive }) =>isActive ? style.active : ''}>Charts</NavLink>
-              </li>
+              </li></>)}
               <li>
                 <NavLink to='History' className={({ isActive }) =>isActive ? style.active : ''}>Orders</NavLink>
               </li>

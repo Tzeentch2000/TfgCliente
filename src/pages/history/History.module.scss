@@ -1,3 +1,5 @@
+@import '../../assets/var/var.scss';
+
 h2{
     margin-top: 0;
     text-align: center;
@@ -8,3 +10,29 @@ h2{
 .notFound{
     text-align: center;
 }
+
+.select__container{
+    text-align: center;
+    margin-bottom: 1rem;
+    
+    .label{
+        content: "Order by";
+        font-weight: bolder;
+        background-color: white;
+        font-size: 1.2rem;
+    }
+    .select,.select:focus-visible{
+        all: unset;
+        text-align-last:center;
+        cursor: pointer;
+        background-color: $secondary-color;
+        font-size: 1.1rem;
+        text-align: left;
+        padding: .4rem .8rem;
+        border: .15rem solid $primary-color;
+        border-radius: 5px;
+        margin: 0 1rem;
+    
+    }
+}
+

@@ -4,14 +4,15 @@ import { Form, redirect, useActionData } from 'react-router-dom'
 import Alert from '../UI/Alert/Alert'
 import useAuth from '../../hooks/useAuth'
 import { deleteCookie, getCookie } from '../../assets/functions/cookie'
-import { IOrderCart } from '../../interfaces/Interfaces'
-import { buy } from '../../assets/functions/api'
+import { IOrderCart, IUser } from '../../interfaces/Interfaces'
+import { buy, chargeUser, updateUser } from '../../assets/functions/api'
 import useCart from '../../hooks/useCart'
+import { validateToken } from '../../assets/functions/validation'
 
 const Direction = () => {
     const auth = useAuth()
     const cart = useCart()
-    const [ direction,setDirection ] = useState(auth.user.email)
+    const [ direction,setDirection ] = useState(auth.user.direction)
     const error: any = useActionData()
     const showError = (error?.length > 0 && direction.trim().length === 0) ? <Alert type='error' message={error} /> : undefined
 
@@ -53,10 +54,12 @@ export async function action({request} : any){
 
   const token = getCookie('token')
   const cart = getCookie('cart') as IOrderCart[]
-  const directionCart = cart.map(c => {
-    return {...c,direction}
-  })
+
+  const __token = getCookie('token')
   try{
+    const user:IUser = await chargeUser(validateToken(__token).id,token)
+    user.direction = direction
+    await updateUser(user,__token)
     await buy(cart,token)
     deleteCookie('cart')
     return redirect('/')
@@ -64,3 +67,5 @@ export async function action({request} : any){
     throw new Response(`Error: ${e}`, { status: 500 });
   }
 }
+
+

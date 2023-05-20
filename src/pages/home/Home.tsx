@@ -29,11 +29,11 @@ const Home = () => {
     setBooks(filteredBooks)
   },[data,dataFilter])
 
-  const handleChangeCategory = (value:string) => {
+  const handleChangeCategory = async(value:string) => {
     dispatchDataFilter({ type: 'changeCategory', playload: value})
   }
 
-  const handleChangeState = (value:string) => {
+  const handleChangeState =async (value:string) => {
     dispatchDataFilter({ type: 'changeState', playload: value})
   }
 
