@@ -1,6 +1,6 @@
 import axios from "axios"
 import { IBook, IBuyCart, ICategory, ICategoryInitialData, IOrderCart, IState, IStateInitialData, IUser, IUserWithoutOrders, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
-const SERVER = 'http://localhost:6677/'
+const SERVER = 'https://apitfg.azurewebsites.net/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
 const GETUSER = `${SERVER}User/`

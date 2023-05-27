@@ -60,7 +60,7 @@ const Header = () => {
               <li className={style.active}>
                 <NavLink to='/' className={({ isActive }) =>isActive ? style.active : ''} end>Home</NavLink>
               </li>
-              {validateToken(__token).userRole == 'True' && (<><li>
+              {__token !== null && validateToken(__token).userRole == 'True' && (<><li>
                 <NavLink to='backoffice' className={({ isActive }) =>isActive ? style.active : ''}>BackOffice</NavLink>
               </li>
               <li>
