@@ -3,7 +3,7 @@ import { Form, useActionData, redirect, useNavigate } from 'react-router-dom'
 import style from '../../../layouts/auth/Auth.module.scss'
 import Alert from '../../../components/UI/Alert/Alert'
 import { validatePhone,validatePassword } from '../../../assets/functions/validation'
-import { register } from '../../../assets/functions/api'
+import { checkUsername, register } from '../../../assets/functions/api'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -75,6 +75,12 @@ export async function action({request}: any){
 
   if(!validatePassword(password,password2)){
     error = 'Incorrect passwords'
+    return error
+  }
+
+  const validUsername = await checkUsername(email);
+  if(validUsername != '-1'){
+    error = 'Email already in use'
     return error
   }
   //LE HE PUESTO EL AWAIT, SI FUNCIONA MAL ESTA PARTE TENGO QUE QUITAR EL AWAIT

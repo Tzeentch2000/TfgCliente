@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, Fragment, useEffect, useState } from 'react'
 import style from './History.module.scss'
 import Table from '../../components/UI/Table/Table'
 import { IFormatedOrders, IOrders } from '../../interfaces/Interfaces'
@@ -54,22 +54,24 @@ const History = () => {
   }
 
   const table = orders.length > 0 ? 
-                <Table th={['Book','Amount','Date','Price']} td={stateOrders} properties={['bookName','amount','date','price']} /> :
+                <Fragment>      
+                  <div className={style.select__container}>
+                    <label className={style.label}>Order by</label>
+                    <select className={style.select} onChange={onHandleChangeOrder}>
+                      <option value=''>none</option>
+                      <option value='date-ascending'>Oldest date</option>
+                      <option value='date-descending'>Newest date</option>
+                      <option value='price-ascending'>Lowest price</option>
+                      <option value='price-descending'>Highest price</option>
+                    </select>
+                  </div>
+                  <Table th={['Book','Amount','Date','Price']} td={stateOrders} properties={['bookName','amount','date','price']} />
+                </Fragment> :
                 <NoElements text='You dont have any orders' />
 
   return ( navigation.state === 'loading' ? <Spinner /> :
     <Container>
       <PageTitle title='Orders History' />
-      <div className={style.select__container}>
-        <label className={style.label}>Order by</label>
-        <select className={style.select} onChange={onHandleChangeOrder}>
-          <option value=''>none</option>
-          <option value='date-ascending'>Oldest date</option>
-          <option value='date-descending'>Newest date</option>
-          <option value='price-ascending'>Lowest price</option>
-          <option value='price-descending'>Highest price</option>
-        </select>
-      </div>
       {table}
     </Container>
   )

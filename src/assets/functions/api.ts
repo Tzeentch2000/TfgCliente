@@ -1,6 +1,6 @@
 import axios from "axios"
 import { IBook, IBuyCart, ICategory, ICategoryInitialData, IOrderCart, IState, IStateInitialData, IUser, IUserWithoutOrders, InsertBook, InsertCategory, InsertState } from "../../interfaces/Interfaces"
-const SERVER = 'https://localhost:7224/'
+const SERVER = 'http://localhost:6677/'
 const CREATEUSER = `${SERVER}User/Create`
 const LOGIN = `${SERVER}Auth`
 const GETUSER = `${SERVER}User/`
@@ -16,6 +16,7 @@ const DELETEBOOK =`${SERVER}Book/`
 const DELETECATEGORY = `${SERVER}Category/`
 const DELETESTATE = `${SERVER}State/`
 const GETORDERS = `${SERVER}Order`
+const CHECKUSERNAME = `${SERVER}CheckUsername?username=`
 
 const config = (token:string) => {
   return {
@@ -260,10 +261,19 @@ export async function getOrderByUserIdOrderBy(url:string,id:number,token:string)
 
 export async function updateUser(user: IUserWithoutOrders,token:string){
   console.log(user)
-  return axios.put(`https://localhost:7224/User/${user.id}`,user,config(token))
+  return axios.put(`${SERVER}User/${user.id}`,user,config(token))
   .then(response => response.data)
   .catch(function (error) {
       console.log(error);
       return -1;
     });
+}
+
+export async function checkUsername(username:string){
+  return axios.get(`${CHECKUSERNAME}${username}`)
+  .then(response => response.data)
+  .catch(function (error) {
+      console.log(error);
+      return null;
+  });
 }

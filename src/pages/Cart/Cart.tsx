@@ -107,7 +107,7 @@ const Cart = () => {
         <Confirm id={modal.bookId} question={modal.title} closeModal={closeModal} handleClick={removeElementOfCart} />
       </Modal>}
       {buy &&  <Modal title={'Buy'} setModal={closeBuy}>
-        <Direction />
+        <Direction setModal={closeBuy} />
       </Modal>}
     </>
   )

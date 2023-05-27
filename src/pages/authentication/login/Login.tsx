@@ -41,8 +41,7 @@ export async function action({request} : any){
   }
 
   const token: string = await login(datos)
-  if(token != '-1'){
-    setCookie('token',token,1)
-  }
+  if(token == '-1') return error = 'Incorrect username or password'
+  setCookie('token',token,1)
   return redirect('/')
 }
