@@ -12,7 +12,7 @@ import Books, {loader as booksLoader} from './pages/maintenance/books/Books';
 import Categories, {loader as categoriesLoader} from './pages/maintenance/categories/Categories';
 import States, {loader as statesLoader} from './pages/maintenance/states/States';
 import History, {loader as historyLoader} from './pages/history/History';
-import Cart from './pages/cart/Cart';
+import Cart from './pages/Cart/Cart'
 import BookDetails, {loader as bookDetailLoader} from './pages/bookDetails/BookDetails';
 import { CartProvider } from './context/CartProvider';
 import {action as shopAction} from './components/direction/Direction';
