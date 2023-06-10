@@ -1,6 +1,8 @@
-@import '../../../../assets/var/var.scss';
+@import "../../../../assets/var/var.scss";
 
-.radio{
-    max-height: 40rem;
-    display: inline !important;
+.radio {
+  max-height: 40rem;
+  display: inline !important;
+  background-color: white;
+  border-radius: 20px;
 }

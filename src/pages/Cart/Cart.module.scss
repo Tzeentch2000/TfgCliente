@@ -88,3 +88,24 @@
     pointer-events: none;
     opacity: .4;
 }
+
+.details{
+    table{
+        width: fit-content;
+        td{
+            border-color: transparent;
+            vertical-align: center;
+        }
+    }
+
+    &__description{
+        display: -webkit-box; /*Después de 2 líneas me lo ocultas*/
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden; 
+    }
+
+    img{
+        width: 40px;
+    }
+}
